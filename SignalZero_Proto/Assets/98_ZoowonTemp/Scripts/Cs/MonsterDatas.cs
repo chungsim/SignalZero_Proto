@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum MonsterRoles{Minion, MidBoss, Boss}
 public enum Monsterbehavior{Patrol, Chase, Flee}
+public enum MonsterState{Idle, Move, Attack}
 
 [System.Serializable]
 public class MonsterData
@@ -15,6 +16,7 @@ public class MonsterData
     public int curHp;
     public float moveSpeed;
     public float detectRange;
+    public float attackRange;
     public int contactDps;
     public Monsterbehavior[] monsterbehaviors;
 }
