@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BulletData : MonoBehaviour
+[CreateAssetMenu(fileName = "BulletSO", menuName = "Weapons/Bullet")]
+public class BulletSO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float range;
+    public float bulletSpeed;
+    public float bulletSize;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float damagePerShot;
+
+    public string damageType;
+    public string modelID;
 }
+
