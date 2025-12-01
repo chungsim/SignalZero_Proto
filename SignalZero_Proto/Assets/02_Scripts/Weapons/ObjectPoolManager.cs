@@ -5,6 +5,7 @@ using UnityEngine;
 public class ObjectPoolManager : MonoBehaviour
 {
     public static ObjectPoolManager Instance;
+    private Transform poolRoot;
 
     [Serializable]
     public class PoolData
@@ -22,6 +23,9 @@ public class ObjectPoolManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        poolRoot = new GameObject("PoolContainer").transform;
+        poolRoot.SetParent(transform);
+
         InitializePools();
     }
 
@@ -46,7 +50,7 @@ public class ObjectPoolManager : MonoBehaviour
     // Instantiate + IPoolable.Initialize
     private GameObject CreateInstance(int key)
     {
-        GameObject obj = Instantiate(prefabLookup[key]);
+        GameObject obj = Instantiate(prefabLookup[key], poolRoot);
 
         // 각 풀 오브젝트는 자신이 어떤 풀에 속하는지 key로 기억함
         var poolable = obj.GetComponent<IPoolable>();
