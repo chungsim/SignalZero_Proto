@@ -667,7 +667,7 @@ GameObject:
   - component: {fileID: 1156021328}
   - component: {fileID: 1156021327}
   - component: {fileID: 1156021331}
-  - component: {fileID: 1156021330}
+  - component: {fileID: 1156021332}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -742,38 +742,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1156021326}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1156021330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1156021326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5eaa85fc3199a834e8b18db60ee6f8db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settings:
-    offset: {x: 0, y: 12, z: -14}
-    normalFOV: 80
-    actionFOV: 60
-    fovChangeSpeed: 2
-    fovRestoreSpeed: 12
-    normalSmoothSpeed: 0.14
-    actionSmoothSpeed: 0.24
-    normalMaxLag: 5
-    actionMaxLag: 8
-    directionOffsetAmount: 2
-    offsetSmoothSpeed: 3
-  target: {fileID: 171954979}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!114 &1156021331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -818,6 +793,31 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1156021332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156021326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eaa85fc3199a834e8b18db60ee6f8db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 171954979}
+  offset: {x: 0, y: 10, z: -10}
+  normalSmoothTime: 0.2
+  normalMaxLagDistance: 5
+  normalFov: 60
+  actionSmoothTime: 0.35
+  actionMaxLagDistance: 8
+  actionFov: 50
+  paramLerpSpeed: 10
+  fovLerpSpeedIn: 15
+  fovLerpSpeedOut: 8
+  directionOffsetAmount: 2
+  directionOffsetSpeed: 3
 --- !u!1 &1259836765
 GameObject:
   m_ObjectHideFlags: 0
