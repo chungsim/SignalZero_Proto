@@ -324,7 +324,7 @@ MonoBehaviour:
   - key: 0
     prefab: {fileID: 5444973165149790785, guid: 002ed74f2bfa32247a38e17711b248a5,
       type: 3}
-    initialCount: 10
+    initialCount: 30
 --- !u!114 &697323326
 MonoBehaviour:
   m_ObjectHideFlags: 0

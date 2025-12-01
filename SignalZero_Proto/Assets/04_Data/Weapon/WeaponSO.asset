@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b54b2da860992af4d9db7c6d3b5f7a20, type: 3}
   m_Name: WeaponSO
   m_EditorClassIdentifier: 
-  cooldown: 0.1
-  numPerShot: 1
-  spreadAngle: 2
+  cooldown: 1
+  numPerShot: 10
+  spreadAngle: 12
   damageType: Normal
   projectileTypeID: 0
   modelID: 1
