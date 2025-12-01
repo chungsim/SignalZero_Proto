@@ -9,9 +9,9 @@ public class ObjectPoolManager : MonoBehaviour
     [Serializable]
     public class PoolData
     {
-        public int key;
-        public GameObject prefab;
-        public int initialCount = 10;
+        public int key;                 // WeaponSO.projectileTypeID와 연결
+        public GameObject prefab;       // Pool에서 관리할 프리팹
+        public int initialCount = 10;   // 초기에 생성할 오브젝트 수
     }
 
     [SerializeField] private List<PoolData> poolSettings = new();
@@ -25,7 +25,7 @@ public class ObjectPoolManager : MonoBehaviour
         InitializePools();
     }
 
-    // 초기 Pool 생성
+    // 초기 Pool 생성 (씬 로딩 시 1회 수행)
     private void InitializePools()
     {
         foreach (var pool in poolSettings)
@@ -33,6 +33,7 @@ public class ObjectPoolManager : MonoBehaviour
             prefabLookup[pool.key] = pool.prefab;
             pools[pool.key] = new Queue<GameObject>();
 
+            // 초기 오브젝트 미리 생성
             for (int i = 0; i < pool.initialCount; i++)
             {
                 GameObject obj = CreateInstance(pool.key);
@@ -42,46 +43,51 @@ public class ObjectPoolManager : MonoBehaviour
         }
     }
 
-    // key 기반으로 신규 객체 생성
+    // Instantiate + IPoolable.Initialize
     private GameObject CreateInstance(int key)
     {
         GameObject obj = Instantiate(prefabLookup[key]);
 
+        // 각 풀 오브젝트는 자신이 어떤 풀에 속하는지 key로 기억함
         var poolable = obj.GetComponent<IPoolable>();
-        poolable?.Initialize(ReturnToPool, key);    // 키 전달
+        poolable?.Initialize(ReturnToPool, key);
 
         return obj;
     }
 
-    // pool에서 가져오기
+    // Pool에서 꺼내기 (발사 시 호출)
     public GameObject GetObject(int key, Vector3 pos, Quaternion rot)
     {
         if (!pools.ContainsKey(key))
             pools[key] = new Queue<GameObject>();
 
+        // Queue가 비었으면 새로 Instantiate
         GameObject obj = pools[key].Count > 0
             ? pools[key].Dequeue()
             : CreateInstance(key);
 
+        // 배치
         obj.transform.SetPositionAndRotation(pos, rot);
         obj.SetActive(true);
 
+        // Pool에서 나온 직후 처리
         obj.GetComponent<IPoolable>()?.OnSpawn();
 
         return obj;
     }
 
-    // pool로 반환
+    // Pool로 복귀시키기
     private void ReturnToPool(GameObject obj)
     {
         var poolable = obj.GetComponent<IPoolable>();
         int key = poolable.PoolKey;
 
-        obj.GetComponent<IPoolable>()?.OnDespawn();
+        poolable.OnDespawn();
 
         obj.SetActive(false);
         pools[key].Enqueue(obj);
     }
 }
+
 
 
