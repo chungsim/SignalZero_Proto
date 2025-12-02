@@ -8,7 +8,7 @@ public class BulletController : MonoBehaviour, IPoolable
     // 충돌 처리, FX 처리하는 매니저
     private BulletManager bulletManager;
 
-    // 풀 식별용 키
+    // 풀 식별용 키 _ WeaponSO.projectileTypeID 에 맞춰서 생성됨
     public int PoolKey { get; private set; }
 
     // ScriptableObject 데이터

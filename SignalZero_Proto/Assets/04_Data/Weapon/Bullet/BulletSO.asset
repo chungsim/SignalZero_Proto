@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BulletSO
   m_EditorClassIdentifier: 
   range: 20
-  bulletSpeed: 10
+  bulletSpeed: 30
   bulletSize: 0.2
   damagePerShot: 10
   damageType: Normal

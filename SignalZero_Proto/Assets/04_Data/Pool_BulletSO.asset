@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a19ce1cd12769844fa3d59e271f59b44, type: 3}
+  m_Name: Pool_BulletSO
+  m_EditorClassIdentifier: 
+  key: 0
+  prefab: {fileID: 5444973165149790785, guid: 002ed74f2bfa32247a38e17711b248a5, type: 3}
+  initialCount: 10

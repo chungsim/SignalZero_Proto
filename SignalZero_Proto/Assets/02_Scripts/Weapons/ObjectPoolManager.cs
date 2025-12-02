@@ -7,14 +7,6 @@ public class ObjectPoolManager : MonoBehaviour
     public static ObjectPoolManager Instance;
     private Transform poolRoot;
 
-    [Serializable]
-    public class PoolData
-    {
-        public int key;                 // WeaponSO.projectileTypeID와 연결
-        public GameObject prefab;       // Pool에서 관리할 프리팹
-        public int initialCount = 10;   // 초기에 생성할 오브젝트 수
-    }
-
     [SerializeField] private List<PoolData> poolSettings = new();
 
     private Dictionary<int, Queue<GameObject>> pools = new();
