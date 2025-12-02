@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b54b2da860992af4d9db7c6d3b5f7a20, type: 3}
   m_Name: L-3_MiniLazer_Weapon
   m_EditorClassIdentifier: 
-  cooldown: 1
+  cooldown: 0.3
   numPerShot: 1
   spreadAngle: 0
   damageType: Normal
