@@ -32,7 +32,7 @@ public class UIPlayerController : MonoBehaviour
 
 	void Start()
 	{
-		Cursor.lockState = CursorLockMode.Locked;
+		
 	}
 
 	private void FixedUpdate()
