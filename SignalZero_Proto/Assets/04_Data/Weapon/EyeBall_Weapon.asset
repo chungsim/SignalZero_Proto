@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b54b2da860992af4d9db7c6d3b5f7a20, type: 3}
   m_Name: EyeBall_Weapon
   m_EditorClassIdentifier: 
-  cooldown: 0.5
+  cooldown: 1.4
   numPerShot: 6
-  spreadAngle: 30
+  spreadAngle: 10
   damageType: Echo
   projectileTypeID: 0
   modelID: 2
