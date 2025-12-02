@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MonsterRoles{Minion, MidBoss, Boss}
-public enum Monsterbehavior{Patrol, Chase, Flee}
+public enum MonsterRoles {Minion, MidBoss, Boss}
+public enum MonsterBehavior {Patrol, Chase, Flee}
+public enum MonsterState {Idle, Move, Attack}
 
 [System.Serializable]
 public class MonsterData
@@ -15,8 +16,9 @@ public class MonsterData
     public int curHp;
     public float moveSpeed;
     public float detectRange;
+    public float attackRange;
     public int contactDps;
-    public Monsterbehavior[] monsterbehaviors;
+    public MonsterBehavior[] monsterbehaviors;
 }
 
 [CreateAssetMenu(fileName = "MonsterDatas", menuName = "GameData/Monster Datas")]
