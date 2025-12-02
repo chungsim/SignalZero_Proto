@@ -24,11 +24,12 @@ public class Monster : MonoBehaviour
     private void Start()
     {
         // 상태 변화 체크 코루틴 시작
-        playerTransform = GameObject.Find("TestPlayer").transform;
+        playerTransform = GameObject.Find("Player(1)").transform;
         monsterFsm = new MonsterFsm(new MonsterIdleState(this));
         StartCoroutine(StateRoutine());
         
     }
+
     private void FixedUpdate()
     {
         monsterFsm.UpdateState();
