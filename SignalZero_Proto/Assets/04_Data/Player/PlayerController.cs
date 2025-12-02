@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private Camera mainCamera;
 
+    private PlayerWeaponManager weaponManager; // 플레이어 무기 공격 매니저
+
     // 마우스 & 이동
     private Vector2 mouseScreenPosition;
     private Vector3 mouseWorldPosition;
@@ -50,6 +52,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
         currentGauge = stats.maxGauge;
+
+        weaponManager = GetComponent<PlayerWeaponManager>(); // WeaponManager 캐싱
     }
 
     void OnEnable()
@@ -58,6 +62,9 @@ public class PlayerController : MonoBehaviour
 
         inputActions.Player.MousePosition.performed += ctx =>
             mouseScreenPosition = ctx.ReadValue<Vector2>();
+
+        inputActions.Player.Attack.started += ctx =>
+        weaponManager.FireAllWeapons(); // 플레이어 Attack input을 WeaponManager에게 전달
 
         inputActions.Player.Dash.started += ctx => OnDashPressed();
         inputActions.Player.Dash.canceled += ctx => OnDashReleased();

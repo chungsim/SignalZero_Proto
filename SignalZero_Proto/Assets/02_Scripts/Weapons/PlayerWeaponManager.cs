@@ -5,6 +5,9 @@ public class PlayerWeaponManager : MonoBehaviour
     [Header("무기 장착 슬롯 (Player 하위에 직접 배치)")]
     [SerializeField] private Transform[] weaponSlots = new Transform[4];
 
+    [SerializeField] private WeaponSO defaultWeaponData; //테스트 용 임시 장착
+
+
     private Weapon[] weapons = new Weapon[4];     // 슬롯에 붙은 Weapon 스크립트
     private WeaponSO[] weaponData = new WeaponSO[4]; // 장착된 무기 데이터
 
@@ -17,6 +20,19 @@ public class PlayerWeaponManager : MonoBehaviour
                 weapons[i] = weaponSlots[i].GetComponentInChildren<Weapon>();
         }
     }
+
+    //테스트용 발사
+    void Start()
+    {
+        if (defaultWeaponData != null)
+        {
+            TryEquipWeapon(defaultWeaponData);
+            TryEquipWeapon(defaultWeaponData);
+            TryEquipWeapon(defaultWeaponData);
+            TryEquipWeapon(defaultWeaponData);
+        }
+    }
+
 
     // -----------------------------
     // (1) 무기 장착

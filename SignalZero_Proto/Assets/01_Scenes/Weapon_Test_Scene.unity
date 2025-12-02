@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 537996072}
   - component: {fileID: 537996071}
   m_Layer: 0
-  m_Name: WeaponHolder (3)
+  m_Name: WeaponSlot_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -956,7 +956,7 @@ GameObject:
   - component: {fileID: 1387392220}
   - component: {fileID: 1387392219}
   m_Layer: 0
-  m_Name: WeaponHolder
+  m_Name: WeaponSlot_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1253,7 +1253,7 @@ GameObject:
   - component: {fileID: 1553317568}
   - component: {fileID: 1553317567}
   m_Layer: 0
-  m_Name: WeaponHolder (2)
+  m_Name: WeaponSlot_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1503,7 +1503,6 @@ GameObject:
   - component: {fileID: 1876610712}
   - component: {fileID: 1876610711}
   - component: {fileID: 1876610717}
-  - component: {fileID: 1876610716}
   - component: {fileID: 1876610710}
   m_Layer: 0
   m_Name: Player (1)
@@ -1658,49 +1657,6 @@ Transform:
   - {fileID: 537996070}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1876610716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1876610709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: fade2de0f9605e24b9ddce24c8b52b93,
-    type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3309498e-527e-4885-9623-af92e1171e0c
-    m_ActionName: Player/MousePosition[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a6cdf303-85cc-4830-ba05-1686fbbdd7f9
-    m_ActionName: Player/Attack[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8d2c016a-503f-4d1d-b0c0-9b81672b4c95
-    m_ActionName: Player/Dash[/Mouse/rightButton]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &1876610717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1718,6 +1674,7 @@ MonoBehaviour:
   - {fileID: 2119190354}
   - {fileID: 1553317566}
   - {fileID: 537996070}
+  defaultWeaponData: {fileID: 11400000, guid: 27010b0776b08634c8018de962651db2, type: 2}
 --- !u!1 &2119190353
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,7 +1687,7 @@ GameObject:
   - component: {fileID: 2119190356}
   - component: {fileID: 2119190355}
   m_Layer: 0
-  m_Name: WeaponHolder (1)
+  m_Name: WeaponSlot_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

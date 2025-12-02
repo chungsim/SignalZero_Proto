@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
         // 또는 사운드, 플래시 등을 여기서 준비
     }
 
+    // 발사 시도
     public void TryShoot()
     {
         if (weaponData == null) return;
@@ -25,6 +26,7 @@ public class Weapon : MonoBehaviour
         Shoot();
     }
 
+    // 실제 발사
     private void Shoot()
     {
         for (int i = 0; i < weaponData.numPerShot; i++)
