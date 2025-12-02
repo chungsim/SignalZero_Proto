@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EyeBall_Weapon
   m_EditorClassIdentifier: 
   cooldown: 0.5
-  numPerShot: 5
-  spreadAngle: 1
+  numPerShot: 6
+  spreadAngle: 30
   damageType: Echo
   projectileTypeID: 0
   modelID: 2
