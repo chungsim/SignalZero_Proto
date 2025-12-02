@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class GameStart : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class GameStart : MonoBehaviour
     public Button options;
     public Button exit;
     
-    bool optionPressed = false;
+    public bool optionPressed = false;
 
     void Start()
     {
@@ -41,9 +42,11 @@ public class GameStart : MonoBehaviour
 		gameStart.interactable = optionPressed;
 		exit.interactable = optionPressed;
 		optionPressed = !optionPressed;
+        if( optionPressed == false )
+        {
+			UIManager.Instance.option.OptionObject.DOAnchorPos(Vector3.zero, UIManager.Instance.option.moveDuration);
+		}
         
-        
-
     }
 
     public void Exit()

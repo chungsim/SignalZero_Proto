@@ -4,13 +4,22 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private WeaponSO weaponData;
     [SerializeField] private float lastFireTime = 0f;
+    [SerializeField] private Transform modelRoot;
+    [SerializeField] private WeaponModelDatabase modelDB;
 
     // 무기 데이터 적용
     public void LoadData(WeaponSO data)
     {
         weaponData = data;
+        // 기존 모델 삭제
 
-        // 나중에 modelID를 기반으로 모델링 교체
+        foreach (Transform child in modelRoot)
+            Destroy(child.gameObject);
+
+        // 새 모델 로드 (나중에 Addressables)
+        GameObject model = modelDB.Get(data.modelID);
+        if (model != null) Instantiate(model, modelRoot);
+
         // 또는 사운드, 플래시 등을 여기서 준비
     }
 
