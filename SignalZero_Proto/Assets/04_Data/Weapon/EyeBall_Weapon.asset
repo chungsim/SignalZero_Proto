@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b54b2da860992af4d9db7c6d3b5f7a20, type: 3}
   m_Name: EyeBall_Weapon
   m_EditorClassIdentifier: 
-  cooldown: 0
-  numPerShot: 0
-  spreadAngle: 0
-  damageType: 
+  cooldown: 0.5
+  numPerShot: 5
+  spreadAngle: 1
+  damageType: Echo
   projectileTypeID: 0
-  modelID: 0
+  modelID: 2
   bulletData: {fileID: 11400000, guid: f1e6aa046b308654c80faf584de02ae0, type: 2}
