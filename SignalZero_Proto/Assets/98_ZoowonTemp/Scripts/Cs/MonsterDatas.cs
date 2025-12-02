@@ -24,5 +24,6 @@ public class MonsterData
 [CreateAssetMenu(fileName = "MonsterDatas", menuName = "GameData/Monster Datas")]
 public class MonsterDatas : ScriptableObject
 {
-    public List<MonsterData> monsterDatas = new List<MonsterData>(); 
+    public List<MonsterData> monsterDataList = new List<MonsterData>();
+    public List<GameObject> monsterPrefabList = new List<GameObject>();
 }

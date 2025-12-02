@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    private GameObject monsterPrefab;
+    [SerializeField] private MonsterDatas monsterDatas;
 
-    public void SpawnMonster(MonsterData monsterData, Vector3 pos)
+    public void SpawnMonster(int index, Vector3 pos)
     {
-        GameObject go = Instantiate(monsterPrefab, transform);
+        GameObject go = Instantiate(monsterDatas.monsterPrefabList[index], transform);
         Monster monster;
         if(go.TryGetComponent<Monster>(out monster))
         {
-            monster.monsterData = monsterData;
+            monster.monsterData = monsterDatas.monsterDataList[index];
         }
         else
         {
@@ -24,6 +24,6 @@ public class MonsterSpawner : MonoBehaviour
     private void LoadMonsterModel()
     {
         // 몬스터 코드에 맞는 모델링 적용
-        
+        // 모델링 리소스 
     }
 }
