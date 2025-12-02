@@ -40,7 +40,7 @@ public class MonsterMoveState : MonsterBaseState
         if (canMove)
         {
             //  임시 플레이어
-            playerTransform = GameObject.Find("TestPlayer").transform;
+            playerTransform = GameObject.Find("Player (1)").transform;
             
             if(monsterBehavior == MonsterBehavior.Chase)
             {
