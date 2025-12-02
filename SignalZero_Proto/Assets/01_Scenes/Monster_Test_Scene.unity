@@ -224,7 +224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &74795463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,13 +244,13 @@ MonoBehaviour:
     maxHp: 0
     curHp: 0
     moveSpeed: 10
-    detectRange: 100
+    detectRange: 10
     attackRange: 2
     contactDps: 0
     monsterbehaviors: 
   maxHp: 0
   curHp: 0
-  curState: 0
+  curState: 2
   playerTransform: {fileID: 0}
   monsterLayer:
     serializedVersion: 2
@@ -361,7 +361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &254167380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,13 +381,13 @@ MonoBehaviour:
     maxHp: 0
     curHp: 0
     moveSpeed: 10
-    detectRange: 100
+    detectRange: 10
     attackRange: 2
     contactDps: 0
     monsterbehaviors: 
   maxHp: 0
   curHp: 0
-  curState: 0
+  curState: 2
   playerTransform: {fileID: 0}
   monsterLayer:
     serializedVersion: 2
@@ -498,7 +498,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &264839932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,13 +518,13 @@ MonoBehaviour:
     maxHp: 0
     curHp: 0
     moveSpeed: 10
-    detectRange: 100
+    detectRange: 10
     attackRange: 2
     contactDps: 0
     monsterbehaviors: 
   maxHp: 0
   curHp: 0
-  curState: 0
+  curState: 2
   playerTransform: {fileID: 0}
   monsterLayer:
     serializedVersion: 2
@@ -742,13 +742,13 @@ MonoBehaviour:
     maxHp: 0
     curHp: 0
     moveSpeed: 10
-    detectRange: 100
+    detectRange: 10
     attackRange: 2
     contactDps: 0
-    monsterbehaviors: 
+    monsterbehaviors: 00000000
   maxHp: 0
   curHp: 0
-  curState: 0
+  curState: 2
   playerTransform: {fileID: 0}
   monsterLayer:
     serializedVersion: 2
@@ -1104,7 +1104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &877325297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1124,13 +1124,13 @@ MonoBehaviour:
     maxHp: 0
     curHp: 0
     moveSpeed: 10
-    detectRange: 100
+    detectRange: 10
     attackRange: 2
     contactDps: 0
     monsterbehaviors: 
   maxHp: 0
   curHp: 0
-  curState: 0
+  curState: 2
   playerTransform: {fileID: 0}
   monsterLayer:
     serializedVersion: 2
@@ -1241,7 +1241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1035330218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1261,13 +1261,13 @@ MonoBehaviour:
     maxHp: 0
     curHp: 0
     moveSpeed: 10
-    detectRange: 100
+    detectRange: 10
     attackRange: 2
     contactDps: 0
     monsterbehaviors: 
   maxHp: 0
   curHp: 0
-  curState: 0
+  curState: 2
   playerTransform: {fileID: 0}
   monsterLayer:
     serializedVersion: 2
@@ -1461,7 +1461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1112319236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1481,13 +1481,13 @@ MonoBehaviour:
     maxHp: 0
     curHp: 0
     moveSpeed: 10
-    detectRange: 100
+    detectRange: 10
     attackRange: 2
     contactDps: 0
     monsterbehaviors: 
   maxHp: 0
   curHp: 0
-  curState: 0
+  curState: 2
   playerTransform: {fileID: 0}
   monsterLayer:
     serializedVersion: 2
@@ -1847,7 +1847,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1561413501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1867,13 +1867,13 @@ MonoBehaviour:
     maxHp: 0
     curHp: 0
     moveSpeed: 10
-    detectRange: 100
+    detectRange: 10
     attackRange: 2
     contactDps: 0
-    monsterbehaviors: 
+    monsterbehaviors: 02000000
   maxHp: 0
   curHp: 0
-  curState: 0
+  curState: 2
   playerTransform: {fileID: 0}
   monsterLayer:
     serializedVersion: 2
@@ -1958,7 +1958,7 @@ Transform:
   m_GameObject: {fileID: 1561413500}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.29, y: 0, z: 1.57}
+  m_LocalPosition: {x: 22.44, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2182,7 +2182,7 @@ Transform:
   m_GameObject: {fileID: 1682206880}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 0, z: 10}
+  m_LocalPosition: {x: 28.61, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2427,7 +2427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1933628636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2447,13 +2447,13 @@ MonoBehaviour:
     maxHp: 0
     curHp: 0
     moveSpeed: 10
-    detectRange: 100
+    detectRange: 10
     attackRange: 2
     contactDps: 0
     monsterbehaviors: 
   maxHp: 0
   curHp: 0
-  curState: 0
+  curState: 2
   playerTransform: {fileID: 0}
   monsterLayer:
     serializedVersion: 2
@@ -2564,7 +2564,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2093558245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2584,13 +2584,13 @@ MonoBehaviour:
     maxHp: 0
     curHp: 0
     moveSpeed: 10
-    detectRange: 100
+    detectRange: 10
     attackRange: 2
     contactDps: 0
     monsterbehaviors: 
   maxHp: 0
   curHp: 0
-  curState: 0
+  curState: 2
   playerTransform: {fileID: 0}
   monsterLayer:
     serializedVersion: 2

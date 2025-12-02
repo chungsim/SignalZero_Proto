@@ -14,6 +14,7 @@ public class Monster : MonoBehaviour
 
     [SerializeField] private MonsterState curState;
     private MonsterFsm monsterFsm;
+    private bool isChasing = false;
 
     //temp
     public Transform playerTransform;
@@ -65,9 +66,10 @@ public class Monster : MonoBehaviour
             {
                 ChangeState(MonsterState.Attack);
             }
-            else if (IsPlayerInChaseRange())
+            else if (IsPlayerInChaseRange() || isChasing)
             {
                 ChangeState(MonsterState.Move);
+                isChasing = true;
             }
             else
             {
