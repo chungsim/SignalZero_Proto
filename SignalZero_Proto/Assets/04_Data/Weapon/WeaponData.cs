@@ -10,7 +10,7 @@ public class WeaponSO : ScriptableObject
     public string damageType;
     public int projectileTypeID;
 
-    public string modelID;
+    public int modelID;
 
     public BulletSO bulletData;
 }

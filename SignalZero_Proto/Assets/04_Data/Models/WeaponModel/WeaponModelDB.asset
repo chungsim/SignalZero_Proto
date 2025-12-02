@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b54b2da860992af4d9db7c6d3b5f7a20, type: 3}
-  m_Name: EyeBall_Weapon
+  m_Script: {fileID: 11500000, guid: 79bf85b5e160a7440958eecd1554db18, type: 3}
+  m_Name: WeaponModelDB
   m_EditorClassIdentifier: 
-  cooldown: 0
-  numPerShot: 0
-  spreadAngle: 0
-  damageType: 
-  projectileTypeID: 0
-  modelID: 0
-  bulletData: {fileID: 11400000, guid: f1e6aa046b308654c80faf584de02ae0, type: 2}
+  entries:
+  - modelID: 1
+    prefab: {fileID: 0}
+  - modelID: 2
+    prefab: {fileID: 0}
