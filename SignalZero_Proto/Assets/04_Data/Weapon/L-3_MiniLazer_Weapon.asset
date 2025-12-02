@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: L-3_MiniLazer_Weapon
   m_EditorClassIdentifier: 
   cooldown: 1
-  numPerShot: 10
-  spreadAngle: 12
+  numPerShot: 1
+  spreadAngle: 0
   damageType: Normal
   projectileTypeID: 0
   modelID: 1
