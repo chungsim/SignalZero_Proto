@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("스탯")]
-    public PlayerStats stats = new PlayerStats();
+    public PlayerStats stats;
 
     private PlayerInputActions inputActions;
     private Rigidbody rb;

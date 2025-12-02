@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146a072578d35034391b7e8d6d0176f3, type: 3}
   m_Name: BulletSO
   m_EditorClassIdentifier: 
-  range: 20
+  range: 40
   bulletSpeed: 30
   bulletSize: 0.2
   damagePerShot: 10
