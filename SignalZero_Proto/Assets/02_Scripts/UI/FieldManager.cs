@@ -22,13 +22,18 @@ public class FieldManager : MonoBehaviour
 
     void fieldReorder()
     {
+        
 		float y = -1f;
-        for(int i = 0;  i < fields.Count; i++)
+        for(int i = 0;  i < 200; i++)
 		{
-			float x = (i % 5) * 200f;
-            float z = (i / 5) * 200f;
-            fields[i].transform.position = new Vector3(x, y, z);
+            int q = Random.Range(0, fields.Count);
+            GameObject spawnField = Instantiate(fields[q],this.transform);
+			float x = (i % 10) * 200f;
+            float z = (i / 10) * 200f;
+            spawnField.transform.position = new Vector3(x, y, z);
 		}
+
+
         
     }
 

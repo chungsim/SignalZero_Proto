@@ -7,8 +7,6 @@ public enum FieldType
 {
 	radioShip,
     common
-
-
 }
 [CreateAssetMenu]
 public class Field : MonoBehaviour
