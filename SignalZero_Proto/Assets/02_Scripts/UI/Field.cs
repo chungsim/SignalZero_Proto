@@ -8,9 +8,30 @@ public enum FieldType
 	radioShip,
     common
 }
-[CreateAssetMenu]
 public class Field : MonoBehaviour
 {
-    
-    
+    public FieldType type;
+
+	private void Awake()
+	{
+		GetRandomType();
+	}
+
+
+	void GetRandomType()
+	{
+		int r = Random.Range(0,100);
+
+		if (r < 70)
+		{
+			type = FieldType.common;
+		}
+		else
+		{
+			type = FieldType.radioShip;
+		}
+	}
+
+
+
 }

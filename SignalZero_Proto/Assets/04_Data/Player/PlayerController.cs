@@ -164,10 +164,14 @@ public class PlayerController : MonoBehaviour
         // 게이지 체크
         if (currentGauge < stats.burstCost) return;
 
-        // 데드라인 내부에서는 사용 불가
+        // 벽 뚫기 불가
         Vector3 toMouse = mouseWorldPosition - transform.position;
         toMouse.y = 0;
         if (toMouse.magnitude <= stats.deadlineRadius) return;
+
+        //대쉬상태인지
+        isDashing = true;
+        Debug.Log(">>> [버스트 시작]");
 
         // 버스트 시작
         currentState = PlayerState.BurstDelay;
@@ -212,12 +216,15 @@ public class PlayerController : MonoBehaviour
         // 우클릭 누르고 있으면 부스터로, 아니면 일반으로
         if (isDashing && currentGauge > 0)
         {
+            Debug.Log(">>> [부스터 전환 성공]");
             currentState = PlayerState.Booster;
             isBoosterActive = true;
         }
         else
         {
+            Debug.Log($">>> [부스터 전환 실패] isDashing: {isDashing}, 게이지: {currentGauge:F1}");
             currentState = PlayerState.Normal;
+            isDashing = false;
         }
     }
 
@@ -238,9 +245,11 @@ public class PlayerController : MonoBehaviour
         // 게이지 또는 입력 종료 체크
         if (currentGauge <= 0 || !isDashing)
         {
+            Debug.Log(">>> [부스터 종료]");
             currentState = PlayerState.Normal;
             isBoosterActive = false;
             burstCooldownTimer = stats.burstCooldown;
+            isDashing = false; 
             return;
         }
 
