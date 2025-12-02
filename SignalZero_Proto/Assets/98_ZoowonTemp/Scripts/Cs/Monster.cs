@@ -14,6 +14,7 @@ public class Monster : MonoBehaviour
 
     [SerializeField] private MonsterState curState;
     private MonsterFsm monsterFsm;
+    private bool isChasing = false;
 
     //temp
     public Transform playerTransform;
@@ -23,11 +24,12 @@ public class Monster : MonoBehaviour
     private void Start()
     {
         // 상태 변화 체크 코루틴 시작
-        playerTransform = GameObject.Find("TestPlayer").transform;
+        playerTransform = GameObject.Find("Player(1)").transform;
         monsterFsm = new MonsterFsm(new MonsterIdleState(this));
         StartCoroutine(StateRoutine());
         
     }
+
     private void FixedUpdate()
     {
         monsterFsm.UpdateState();
@@ -65,9 +67,10 @@ public class Monster : MonoBehaviour
             {
                 ChangeState(MonsterState.Attack);
             }
-            else if (IsPlayerInChaseRange())
+            else if (IsPlayerInChaseRange() || isChasing)
             {
                 ChangeState(MonsterState.Move);
+                isChasing = true;
             }
             else
             {

@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private Camera mainCamera;
 
+    private PlayerWeaponManager weaponManager; // 플레이어 무기 공격 매니저
+
     // 마우스 & 이동
     private Vector2 mouseScreenPosition;
     private Vector3 mouseWorldPosition;
@@ -50,6 +52,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
         currentGauge = stats.maxGauge;
+
+        weaponManager = GetComponent<PlayerWeaponManager>(); // WeaponManager 캐싱
     }
 
     void OnEnable()
@@ -58,6 +62,9 @@ public class PlayerController : MonoBehaviour
 
         inputActions.Player.MousePosition.performed += ctx =>
             mouseScreenPosition = ctx.ReadValue<Vector2>();
+
+        inputActions.Player.Attack.started += ctx =>
+        weaponManager.FireAllWeapons(); // 플레이어 Attack input을 WeaponManager에게 전달
 
         inputActions.Player.Dash.started += ctx => OnDashPressed();
         inputActions.Player.Dash.canceled += ctx => OnDashReleased();
@@ -157,10 +164,14 @@ public class PlayerController : MonoBehaviour
         // 게이지 체크
         if (currentGauge < stats.burstCost) return;
 
-        // 데드라인 내부에서는 사용 불가
+        // 벽 뚫기 불가
         Vector3 toMouse = mouseWorldPosition - transform.position;
         toMouse.y = 0;
         if (toMouse.magnitude <= stats.deadlineRadius) return;
+
+        //대쉬상태인지
+        isDashing = true;
+        Debug.Log(">>> [버스트 시작]");
 
         // 버스트 시작
         currentState = PlayerState.BurstDelay;
@@ -205,12 +216,15 @@ public class PlayerController : MonoBehaviour
         // 우클릭 누르고 있으면 부스터로, 아니면 일반으로
         if (isDashing && currentGauge > 0)
         {
+            Debug.Log(">>> [부스터 전환 성공]");
             currentState = PlayerState.Booster;
             isBoosterActive = true;
         }
         else
         {
+            Debug.Log($">>> [부스터 전환 실패] isDashing: {isDashing}, 게이지: {currentGauge:F1}");
             currentState = PlayerState.Normal;
+            isDashing = false;
         }
     }
 
@@ -231,9 +245,11 @@ public class PlayerController : MonoBehaviour
         // 게이지 또는 입력 종료 체크
         if (currentGauge <= 0 || !isDashing)
         {
+            Debug.Log(">>> [부스터 종료]");
             currentState = PlayerState.Normal;
             isBoosterActive = false;
             burstCooldownTimer = stats.burstCooldown;
+            isDashing = false; 
             return;
         }
 

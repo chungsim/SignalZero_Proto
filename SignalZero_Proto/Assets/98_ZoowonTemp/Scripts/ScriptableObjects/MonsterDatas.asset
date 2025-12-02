@@ -18,7 +18,21 @@ MonoBehaviour:
     monsterRole: 0
     maxHp: 10
     curHp: 10
-    moveSpeed: 0
-    detectRange: 0
+    moveSpeed: 10
+    detectRange: 10
+    attackRange: 2
+    contactDps: 1
+    monsterbehaviors: 0000000001000000
+  - id: 2
+    name: Test_Mid
+    monsterRole: 0
+    maxHp: 10
+    curHp: 10
+    moveSpeed: 5
+    detectRange: 20
+    attackRange: 0
     contactDps: 0
-    monsterbehaviors: 
+    monsterbehaviors: 0000000002000000
+  monsterPrefabs:
+  - {fileID: 7054851560030409305, guid: 0bb92f37c3f483144b9426a89e0c7b5e, type: 3}
+  - {fileID: 5304753864074171701, guid: 167b26bead8b10c449cb926904995443, type: 3}

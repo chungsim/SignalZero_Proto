@@ -1,18 +1,37 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
+public enum FieldType
+{
+	radioShip,
+    common
+}
 public class Field : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public FieldType type;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private void Awake()
+	{
+		GetRandomType();
+	}
+
+
+	void GetRandomType()
+	{
+		int r = Random.Range(0,100);
+
+		if (r < 70)
+		{
+			type = FieldType.common;
+		}
+		else
+		{
+			type = FieldType.radioShip;
+		}
+	}
+
+
+
 }

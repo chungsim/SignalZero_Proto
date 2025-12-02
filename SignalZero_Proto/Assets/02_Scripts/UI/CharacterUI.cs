@@ -11,27 +11,36 @@ public class CharacterUI : MonoBehaviour
 
     private float baseDistance;
     private Vector3 baseOffset;
+    private Vector3 offset;
 
-    public Camera camera;
+    public Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
-        baseDistance = Vector3.Distance(camera.transform.position, player.transform.position);
+        baseDistance = Vector3.Distance(cam.transform.position, player.transform.position);
         baseOffset = transform.position - player.transform.position;
+        offset = cam.transform.position - player.transform.position; 
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-       CalculateRotate();
+       CalculateRotation();
+       CalculatePosition();
+
     }
 
-    void CalculateRotate()
+    void CalculateRotation()
     {
-		transform.rotation = Quaternion.LookRotation(player.position - camera.transform.position);
+		transform.rotation = Quaternion.LookRotation(player.position - cam.transform.position);
 		Vector3 euler = transform.rotation.eulerAngles;
 		euler.z = 0f;
 		transform.rotation = Quaternion.Euler(euler);
 	}
+    void CalculatePosition()
+    {
+        cam.transform.position = player.transform.position - cam.transform.position;
+    }
 }
