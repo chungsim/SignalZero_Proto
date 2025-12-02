@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-[System.Serializable]
-public class PlayerStats
+[CreateAssetMenu(fileName = "PlayerStatsSO", menuName = "Player/Stats")]
+public class PlayerStats : ScriptableObject
 {
     [Header("이동 관련")]
     public float minSpeed = 1f;           // 최소 속도
