@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 1292225}
   - component: {fileID: 1292227}
   - component: {fileID: 1292226}
-  m_Layer: 5
+  m_Layer: 4
   m_Name: back healthbar yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 126166420}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: WeaponSlot_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 221551710}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: ModelRoot_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 333063213}
   - component: {fileID: 333063215}
   - component: {fileID: 333063214}
-  m_Layer: 5
+  m_Layer: 4
   m_Name: back healthbar blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,7 +507,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 377535309}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: ModelRoot_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -657,7 +657,7 @@ GameObject:
   m_Component:
   - component: {fileID: 490293068}
   - component: {fileID: 490293069}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -705,7 +705,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 521307148}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: ModelRoot_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -856,7 +856,7 @@ GameObject:
   m_Component:
   - component: {fileID: 960640570}
   - component: {fileID: 960640571}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1023,7 +1023,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1069178384}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: WeaponSlot_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1337,7 +1337,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1272705558}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: WeaponSlot_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1490,7 +1490,7 @@ GameObject:
   - component: {fileID: 1472703383}
   - component: {fileID: 1472703385}
   - component: {fileID: 1472703384}
-  m_Layer: 5
+  m_Layer: 4
   m_Name: Healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1566,7 +1566,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1517215999}
   - component: {fileID: 1517216000}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1620,7 +1620,7 @@ GameObject:
   - component: {fileID: 1546787522}
   - component: {fileID: 1546787521}
   - component: {fileID: 1546787520}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Player (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1846,7 +1846,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1713342265}
   - component: {fileID: 1713342266}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1976,7 +1976,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1924527733}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: WeaponSlot_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2008,7 +2008,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1938906278}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: ModelRoot_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2042,7 +2042,7 @@ GameObject:
   - component: {fileID: 2042668356}
   - component: {fileID: 2042668355}
   - component: {fileID: 2042668354}
-  m_Layer: 5
+  m_Layer: 4
   m_Name: WorldCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
