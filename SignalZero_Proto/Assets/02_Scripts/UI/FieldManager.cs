@@ -32,6 +32,9 @@ public class FieldManager : MonoBehaviour
 			float x = (i % 10) * 200f;
             float z = (i / 10) * 200f;
             spawnField.transform.position = new Vector3(x, y, z);
+           
+
+
 		}
     }
 
