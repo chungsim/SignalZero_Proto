@@ -9,12 +9,10 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Vector3 offset = new Vector3(0f, 10f, -10f);
 
     [Header("일반 상태")]
-    [SerializeField] private float normalSmoothTime = 0.2f;
     [SerializeField] private float normalMaxLagDistance = 5f;
     [SerializeField] private float normalFov = 60f;
 
     [Header("액션 상태 (버스트/부스터)")]
-    [SerializeField] private float actionSmoothTime = 0.35f;
     [SerializeField] private float actionMaxLagDistance = 8f;
     [SerializeField] private float actionFov = 50f;
 
@@ -27,16 +25,13 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private float directionOffsetAmount = 2f;
     [SerializeField] private float directionOffsetSpeed = 3f;
 
-    private Vector3 velocity;
-    private Vector3 currentDirectionOffset;
+    private Vector3 currentDirectionOffset = Vector3.zero;
 
     // 현재 사용 중인 값
-    private float currentSmoothTime;
     private float currentMaxLagDistance;
     private float currentFov;
 
     // 목표값
-    private float targetSmoothTime;
     private float targetMaxLagDistance;
     private float targetFov;
 
@@ -45,25 +40,23 @@ public class CameraFollow : MonoBehaviour
 
     private void Awake()
     {
+        // 초기값 설정
+        currentMaxLagDistance = normalMaxLagDistance;
+        targetMaxLagDistance = normalMaxLagDistance;
+
         cam = GetComponent<Camera>();
         if (cam == null && Camera.main != null)
             cam = Camera.main;
-
-        if (target != null)
-        {
-            playerController = target.GetComponent<PlayerController>();
-        }
-
-        // 초기값 설정
-        currentSmoothTime = normalSmoothTime;
-        currentMaxLagDistance = normalMaxLagDistance;
-        targetSmoothTime = normalSmoothTime;
-        targetMaxLagDistance = normalMaxLagDistance;
 
         if (cam != null)
         {
             currentFov = targetFov = normalFov;
             cam.fieldOfView = currentFov;
+        }
+
+        if (target != null)
+        {
+            playerController = target.GetComponent<PlayerController>();
         }
     }
 
@@ -73,9 +66,6 @@ public class CameraFollow : MonoBehaviour
 
         // 1. 액션 상태에 따라 목표값 업데이트
         UpdateCameraMode();
-
-        // 2. 파라미터 보간
-        InterpolateParameters();
 
         // 3. FOV 업데이트
         UpdateFOV();
@@ -90,31 +80,14 @@ public class CameraFollow : MonoBehaviour
 
         if (isAction)
         {
-            targetSmoothTime = actionSmoothTime;
             targetMaxLagDistance = actionMaxLagDistance;
             targetFov = actionFov;
         }
         else
         {
-            targetSmoothTime = normalSmoothTime;
             targetMaxLagDistance = normalMaxLagDistance;
             targetFov = normalFov;
         }
-    }
-
-    private void InterpolateParameters()
-    {
-        currentSmoothTime = Mathf.Lerp(
-            currentSmoothTime,
-            targetSmoothTime,
-            paramLerpSpeed * Time.deltaTime
-        );
-
-        currentMaxLagDistance = Mathf.Lerp(
-            currentMaxLagDistance,
-            targetMaxLagDistance,
-            paramLerpSpeed * Time.deltaTime
-        );
     }
 
     private void UpdateFOV()
@@ -135,6 +108,8 @@ public class CameraFollow : MonoBehaviour
 
     private void UpdatePosition()
     {
+        currentMaxLagDistance = targetMaxLagDistance;
+
         // 이동 방향 오프셋 계산
         Vector3 moveDirection = Vector3.zero;
         if (playerController != null && playerController.IsMoving())
@@ -142,12 +117,14 @@ public class CameraFollow : MonoBehaviour
             moveDirection = playerController.GetMoveDirection();
         }
 
+        // 카메라 위치 보정 효과
         Vector3 targetDirectionOffset = new Vector3(
             moveDirection.x * directionOffsetAmount,
             0,
             moveDirection.z * directionOffsetAmount
         );
 
+        // 카메라 딜레이 선형 보간
         currentDirectionOffset = Vector3.Lerp(
             currentDirectionOffset,
             targetDirectionOffset,
@@ -157,24 +134,16 @@ public class CameraFollow : MonoBehaviour
         // 목표 위치 계산 (오프셋 + 방향 오프셋)
         Vector3 idealPos = target.position + offset + currentDirectionOffset;
 
-        // SmoothDamp로 부드럽게 이동
-        Vector3 newPos = Vector3.SmoothDamp(
-            transform.position,
-            idealPos,
-            ref velocity,
-            currentSmoothTime
-        );
-
         // 최대 지연 거리 제한
-        Vector3 diff = newPos - (target.position + offset);
+        Vector3 diff = idealPos - (target.position + offset);   // == currentDirectionOffset;
         float dist = diff.magnitude;
 
         if (dist > currentMaxLagDistance)
         {
-            newPos = (target.position + offset) + diff.normalized * currentMaxLagDistance;
+            idealPos = (target.position + offset) + diff.normalized * currentMaxLagDistance;
         }
 
-        transform.position = newPos;
+        transform.position = idealPos;
 
         // (탑뷰/쿼터뷰 유지)
         // transform.LookAt()를 사용하지 않는 방식으로 수정
