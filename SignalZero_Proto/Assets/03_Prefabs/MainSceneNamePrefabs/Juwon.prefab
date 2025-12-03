@@ -165,6 +165,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5544034313029896895, guid: 3ac91e3ab0e951e43a91f394a6701103,
+        type: 3}
+      propertyPath: bossSpawnCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5544034313029896895, guid: 3ac91e3ab0e951e43a91f394a6701103,
+        type: 3}
+      propertyPath: dropItems.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5544034313029896895, guid: 3ac91e3ab0e951e43a91f394a6701103,
+        type: 3}
+      propertyPath: dropItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 2902829951960193995, guid: d074b5569b37e0144924363a69282709,
+        type: 3}
+    - target: {fileID: 5544034313029896895, guid: 3ac91e3ab0e951e43a91f394a6701103,
+        type: 3}
+      propertyPath: dropItems.Array.data[1]
+      value: 
+      objectReference: {fileID: 7417126781645869113, guid: 3937a85087453d847bd515a358376d17,
+        type: 3}
     - target: {fileID: 6757043025773640037, guid: 3ac91e3ab0e951e43a91f394a6701103,
         type: 3}
       propertyPath: m_Name

@@ -119,12 +119,16 @@ public class Monster : MonoBehaviour, IDamageAble
     public void GetDamage(int damage)
     {
         int result = curHp - damage;
-        curHp = result > 0 ? result : 0;
 
-        if(curHp <= 0)
+        if(curHp > 0)
         {
-            Die();
-        } 
+            curHp = result > 0 ? result : 0;
+
+            if(curHp <= 0)
+            {
+                Die();
+            }
+        }  
     }
 
     private void Die()

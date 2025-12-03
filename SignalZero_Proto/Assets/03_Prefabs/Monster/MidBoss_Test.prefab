@@ -70,12 +70,12 @@ MonoBehaviour:
   monsterData:
     id: 0
     name: 
-    monsterRole: 0
+    monsterRole: 1
     maxHp: 300
     curHp: 300
     moveSpeed: 10
     detectRange: 10
-    attackRange: 2
+    attackRange: 0
     contactDps: 0
     monsterbehaviors: 0200000000000000
   maxHp: 0

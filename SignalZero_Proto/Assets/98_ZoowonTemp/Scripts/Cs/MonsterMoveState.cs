@@ -83,15 +83,18 @@ public class MonsterMoveState : MonsterBaseState
     {
        // 플레이어 반대 위치로 이동
         Vector3 direction = (playerTransform.position - _monster.transform.position).normalized;
+        direction -= new Vector3(0f, direction.y, 0f);
 
         if(Vector3.Distance(playerTransform.position, _monster.transform.position) < _monster.monsterData.detectRange)
         {
             curSpeed = Mathf.Lerp(curSpeed, moveSpeed, Time.deltaTime);
             _monster.transform.position -= direction * curSpeed * Time.deltaTime;
+            Debug.Log("Flee");
         }
         else
         {
             curSpeed = Mathf.Lerp(curSpeed, 0f, Time.deltaTime);
+            Debug.Log("Flee Stop");
         } 
 
         LookAtPlayer();
