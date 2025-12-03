@@ -25,6 +25,7 @@ public class Monster : MonoBehaviour, IDamageAble
     {
         // 상태 변화 체크 코루틴 시작
         playerTransform = GameManager.Instance.characterManager.GetPlayerTransform();
+        LoadConditions();
         monsterFsm = new MonsterFsm(new MonsterIdleState(this));
         StartCoroutine(StateRoutine());
         
@@ -33,6 +34,12 @@ public class Monster : MonoBehaviour, IDamageAble
     private void FixedUpdate()
     {
         monsterFsm.UpdateState();
+    }
+
+    private void LoadConditions()
+    {
+        maxHp = monsterData.maxHp;
+        curHp = maxHp;
     }
 
     private void ChangeState(MonsterState nextState)
@@ -126,6 +133,7 @@ public class Monster : MonoBehaviour, IDamageAble
         if(monsterData.monsterRole == MonsterRoles.MidBoss)
         {
             GameManager.Instance.monsterSpawnManager.AddMidKillCount();
+            GameManager.Instance.monsterSpawnManager.SpawnWeaponItem(transform.position);
         }
 
         if(monsterData.monsterRole == MonsterRoles.Boss)
