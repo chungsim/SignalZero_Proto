@@ -208,7 +208,7 @@ public class PlayerController : MonoBehaviour
 
         // 감속 이동
         moveDirection = burstDirection;
-        currentSpeed = combatStats.burstSlow;
+        currentSpeed = movementStats.moveSpeed * combatStats.burstSlow;
 
         if (burstDelayTimer <= 0)
         {
@@ -246,8 +246,7 @@ public class PlayerController : MonoBehaviour
     // === 버스트 대쉬 업데이트 ===
     void UpdateBurstDash()
     {
-        // 즉시 전환되므로 여기서는 대기만
-        currentSpeed = 0f;
+        
     }
 
     // === 부스터 ===
