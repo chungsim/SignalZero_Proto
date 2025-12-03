@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum MonsterRoles {Minion, MidBoss, Boss}
-public enum MonsterBehavior {Patrol, Chase, Flee}
+public enum MonsterBehavior {Patrol, Chase, Flee, Spawn}
 public enum MonsterState {Idle, Move, Attack}
 
 [System.Serializable]

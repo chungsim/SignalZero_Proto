@@ -12,6 +12,7 @@ public class MonsterSpawnManager : MonoBehaviour
 
     [SerializeField] private List<Field> visitedFields;
     [SerializeField] private Transform curFieldTarnsform;
+    [SerializeField] private List<MonsterSpawnData> monsterSpawnDatas;
 
     void Awake()
     {
@@ -51,6 +52,17 @@ public class MonsterSpawnManager : MonoBehaviour
             // 몬스터 위치 적용
             go. transform.position = curFieldTarnsform.position + monsterPosPair.spawnLocalPos;
         }    
+    }
+
+    public void SpawnMinion(Transform bossTransform, int num)
+    {
+
+        for(int i = 0; i < num; i++)
+        {
+            Vector3 spawnPos = bossTransform.position + bossTransform.forward * -UnityEngine.Random.Range(10, 30) + bossTransform.right * UnityEngine.Random.Range(-20  , 20) ;
+           GameObject go = Instantiate(monsterSpawnDatas[3].monsterPosPairs[0].monsterPrefab, transform);
+           go. transform.position = spawnPos;
+        }  
     }
 
 }

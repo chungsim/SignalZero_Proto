@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6c6ed56031d76a4bb30b167246b52f4, type: 3}
+  m_Name: BossMinion
+  m_EditorClassIdentifier: 
+  monsterPosPairs:
+  - monsterPrefab: {fileID: 7054851560030409305, guid: 0c81166eca896664aa72e0e55c1abaa1,
+      type: 3}
+    spawnLocalPos: {x: 0, y: 0, z: 0}
