@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 	public UIManager uiManager;
 	public FieldManager fieldManager;
 
+
 	private void Awake()
 	{
 		if(instance == null)

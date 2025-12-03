@@ -12,8 +12,9 @@ public class FieldManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
+		ShuffleList(fields);
+		fieldReorder();
+	}
 
     // Update is called once per frame
     void Update()
@@ -28,7 +29,11 @@ public class FieldManager : MonoBehaviour
 	}
 
     void fieldReorder()
-    {  
+    {
+		foreach (Transform child in transform)
+		{
+			Destroy(child.gameObject);
+		}
 		float y = -1f;
         for(int i = 0;  i < 100; i++)
 		{
