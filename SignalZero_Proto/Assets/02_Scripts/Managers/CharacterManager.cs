@@ -19,8 +19,8 @@ public class CharacterManager : MonoBehaviour
     [Tooltip("현재 씬의 플레이어 오브젝트")]
     [SerializeField] private GameObject playerInstance;
 
-    private Transform playerTransform;
-    private PlayerController playerController;
+    public Transform playerTransform;
+    public PlayerController playerController;
 
     // ========== 초기화 ==========
     // Awake는 더 이상 싱글톤 설정 안 함
