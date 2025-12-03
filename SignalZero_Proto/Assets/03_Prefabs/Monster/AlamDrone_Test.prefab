@@ -73,10 +73,10 @@ MonoBehaviour:
     monsterRole: 0
     maxHp: 0
     curHp: 0
-    moveSpeed: 10
+    moveSpeed: 20
     detectRange: 10
     attackRange: 2
-    contactDps: 0
+    contactDps: 10
     monsterbehaviors: 0000000001000000
   maxHp: 0
   curHp: 0

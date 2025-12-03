@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,14 +11,26 @@ public class MonsterAttackState : MonsterBaseState
     private LayerMask playerMask = LayerMask.GetMask("Water"); // 테스트 용
 
     private float nextAttackTime = 0f;
+    private MonsterBehavior curBehavior;
     
     public override void OnStateEnter()
     {
-        
+        if(Array.Exists(_monster.monsterData.monsterbehaviors, element => element == MonsterBehavior.Spawn))
+        {
+            curBehavior = MonsterBehavior.Spawn;
+        }
     }
     public override void OnStateUpdate()
     {
-        AttackPlayer();
+        if(curBehavior == MonsterBehavior.Spawn)
+        {
+            SpawnMinion();
+        }
+        else
+        {
+            AttackPlayer();
+        }
+        
     }
     public override void OnStateExit()
     {
@@ -37,5 +50,13 @@ public class MonsterAttackState : MonsterBaseState
             nextAttackTime = Time.time + 1f;
         }          
         
+    }
+
+    private void SpawnMinion()
+    {
+        if (Time.time < nextAttackTime) return;
+
+        MonsterSpawnManager.Instance.SpawnMinion(_monster.transform, 4);
+        nextAttackTime = Time.time + 5f;      
     }
 }
