@@ -1,15 +1,26 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
 
+
+public enum GameState
+{
+	Start,
+	Playing,
+	Paused,
+	GameOver
+}
 public class GameManager : MonoBehaviour
 {
 
     private static GameManager instance;
 
     public static GameManager Instance {  get { if (instance == null)instance = new GameManager();return instance; } }
+
+	public event Action Init;
 
 	[Header("갖고있는 매니저")]
 	public UIManager uiManager;
@@ -56,8 +67,19 @@ public class GameManager : MonoBehaviour
 			uiManager.characterUI = FindObjectOfType<CharacterUI>();
 			fieldManager = FindObjectOfType<FieldManager>();
 			monsterSpawnManager = FindObjectOfType<MonsterSpawnManager>();
-			
-			uiManager.characterUI.Init();
+
+            if (characterManager != null)
+            {
+                characterManager.FindAndRegisterPlayer();
+                Debug.Log("[GameManager] 플레이어 등록 완료!");
+            }
+            else
+            {
+                Debug.LogError("[GameManager] CharacterManager를 찾을 수 없습니다!");
+            }
+
+            uiManager.characterUI.Init();
+			Init.Invoke();
 		}
 		else if (scene.name == "Ui_Test_Scene")
 		{
@@ -70,6 +92,16 @@ public class GameManager : MonoBehaviour
 			// 엔딩씬 전용 로직
 			Debug.Log("엔딩씬 전용 로직 실행!");
 		}
+	}
+	
+	void GameStart()
+	{
+
+	}
+
+	void GameEnd()
+	{
+
 	}
 
 

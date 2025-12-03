@@ -6,14 +6,18 @@ using UnityEngine.UI;
 public class CharacterUI : MonoBehaviour
 {
     public Transform player;
-    [SerializeField] private Image healthbarBlue;
+	public RectTransform canvasRect;
+	public RectTransform uiRect;
+	[SerializeField] private Image healthbarBlue;
     [SerializeField] private Image healthbarYellow;
 
 
-    private float playerHealt;
+    private float updateHealt;
+
+	public float offsetY = 1.5f;
 
 
-    public Camera cam;
+	public Camera cam;
 
     // Start is called before the first frame update
     void Start()
@@ -24,17 +28,33 @@ public class CharacterUI : MonoBehaviour
     public void Init()
     {
         player = GameManager.Instance.characterManager.GetPlayerTransform();
+        cam = Camera.main;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-       CalculateRotation();
+       
     }
 
-    void CalculateRotation()
-    {
-		Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(cam, player.transform.position);
-		this.GetComponent<RectTransform>().position = screenPoint;
+	private void LateUpdate()
+	{
+		CalculateRotation();
 	}
+
+	void CalculateRotation()
+    {
+		transform.LookAt(cam.transform);
+	}
+
+    void HealthUI()
+    {
+        
+    }
+
+    void BoostUI()
+    {
+
+    }
 }
