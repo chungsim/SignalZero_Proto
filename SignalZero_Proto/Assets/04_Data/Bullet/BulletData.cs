@@ -11,5 +11,7 @@ public class BulletSO : ScriptableObject
 
     public string damageType;
     public string modelID;
+
+    public AudioData audiodata;
 }
 

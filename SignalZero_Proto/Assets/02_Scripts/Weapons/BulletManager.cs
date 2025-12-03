@@ -9,11 +9,30 @@ public class BulletManager : MonoBehaviour
         Instance = this;
     }
 
+    // FX 묶음 실행 함수
     public void CreateImpactFX(Vector3 pos, BulletSO data) // 충돌 시 FX 적용 예정
     {
         // TODO: FX 풀링으로 전환 가능
         Debug.Log($"Impact FX at {pos}");
     }
+
+    // 총알 충돌 시 FX/SFX 실행
+    public void OnBulletImpact(Vector3 pos, BulletSO bulletData)
+    {
+        // 1) 충돌 FX (구현 예정)
+        CreateImpactFX(pos, bulletData);
+
+        // 2) 충돌 사운드 (ImpactSFX)
+        if (bulletData != null && bulletData.audiodata != null)
+        {
+            var clip = bulletData.audiodata.impactSFX;
+            if (clip != null)
+                AudioManager.Instance.PlaySFX(clip);
+
+            Debug.Log("총알 사운드");
+        }
+    }
+
 
     public void ApplyDamage(Collider target, float dmg)
     {

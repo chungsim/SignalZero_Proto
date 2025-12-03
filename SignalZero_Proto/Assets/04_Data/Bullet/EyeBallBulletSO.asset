@@ -18,3 +18,4 @@ MonoBehaviour:
   damagePerShot: 3
   damageType: Normal
   modelID: 2
+  audiodata: {fileID: 11400000, guid: 8cc99564dd172ae4c8619f5451044a1b, type: 2}
