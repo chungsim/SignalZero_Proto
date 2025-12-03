@@ -12,6 +12,7 @@ public class Field : MonoBehaviour
 {
     public FieldType type;
 
+	public bool isSpawned;
 	private void Awake()
 	{
 		GetRandomType();
