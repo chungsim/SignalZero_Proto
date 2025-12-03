@@ -20,7 +20,7 @@ public class Weapon : MonoBehaviour
         GameObject model = modelDB.Get(data.modelID);
         if (model != null) Instantiate(model, modelRoot);
 
-        // 또는 사운드, 플래시 등을 여기서 준비
+ 
     }
 
     // 발사 시도
@@ -38,6 +38,12 @@ public class Weapon : MonoBehaviour
     // 실제 발사
     private void Shoot()
     {
+        // 사운드
+
+        if (weaponData.audioData != null)
+            AudioManager.Instance.PlaySFX(weaponData.audioData.fireSFX);
+
+        // 탄환 생성
         for (int i = 0; i < weaponData.numPerShot; i++)
         {
             float angle = Random.Range(-weaponData.spreadAngle, weaponData.spreadAngle);

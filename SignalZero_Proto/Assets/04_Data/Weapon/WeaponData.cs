@@ -13,4 +13,6 @@ public class WeaponSO : ScriptableObject
     public int modelID;
 
     public BulletSO bulletData;
+
+    public AudioData audioData;
 }
