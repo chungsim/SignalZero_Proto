@@ -1,28 +1,14 @@
 ﻿using UnityEngine;
 
-//싱글톤으로 전역 접근 가능
-// 플레이어 Transform 참조
+/// <summary>
+/// 플레이어 캐릭터 관리 매니저
+/// - GameManager가 관리
+/// - 몬스터 등 다른 시스템에서 플레이어 Transform 참조 제공
+/// </summary>
 public class CharacterManager : MonoBehaviour
 {
-    // ========== 싱글톤 ==========
-    private static CharacterManager instance;
-    public static CharacterManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<CharacterManager>();
-
-                if (instance == null)
-                {
-                    GameObject go = new GameObject("CharacterManager");
-                    instance = go.AddComponent<CharacterManager>();
-                }
-            }
-            return instance;
-        }
-    }
+    // ========== 싱글톤 제거됨 ==========
+    // GameManager를 통해 접근하도록 변경
 
     // ========== 플레이어 참조 ==========
     [Header("플레이어 프리팹")]
@@ -37,24 +23,17 @@ public class CharacterManager : MonoBehaviour
     private PlayerController playerController;
 
     // ========== 초기화 ==========
+    // Awake는 더 이상 싱글톤 설정 안 함
     private void Awake()
     {
-        // 싱글톤 설정
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        // 싱글톤 코드 제거됨
     }
 
-    // ========== 플레이어 Transform 제공 ==========
+    // ========== Public API - 플레이어 Transform 제공 ==========
 
-    // 플레이어의 Transform을 반환 (몬스터 추격 등에 사용)
+    /// <summary>
+    /// 플레이어의 Transform을 반환 (몬스터 추격 등에 사용)
+    /// </summary>
     public Transform GetPlayerTransform()
     {
         if (playerTransform == null && playerInstance != null)
@@ -64,20 +43,26 @@ public class CharacterManager : MonoBehaviour
         return playerTransform;
     }
 
-    // 플레이어의 현재 위치를 반환
+    /// <summary>
+    /// 플레이어의 현재 위치를 반환
+    /// </summary>
     public Vector3 GetPlayerPosition()
     {
         Transform pt = GetPlayerTransform();
         return pt != null ? pt.position : Vector3.zero;
     }
 
-    // 플레이어 GameObject 반환
+    /// <summary>
+    /// 플레이어 GameObject 반환
+    /// </summary>
     public GameObject GetPlayerObject()
     {
         return playerInstance;
     }
 
-    // PlayerController 컴포넌트 반환
+    /// <summary>
+    /// PlayerController 컴포넌트 반환
+    /// </summary>
     public PlayerController GetPlayerController()
     {
         if (playerController == null && playerInstance != null)
@@ -89,12 +74,14 @@ public class CharacterManager : MonoBehaviour
 
     // ========== 플레이어 생성/등록 ==========
 
-    // 프리팹으로부터 플레이어를 생성
+    /// <summary>
+    /// 프리팹으로부터 플레이어를 생성
+    /// </summary>
     public void SpawnPlayer(Vector3 position, Quaternion rotation)
     {
         if (playerPrefab == null)
         {
-            Debug.LogError("[CharacterManager] 플레이어 프리팹이 설정되지 않았습니다.");
+            Debug.LogError("[CharacterManager] 플레이어 프리팹이 설정되지 않았습니다!");
             return;
         }
 
@@ -111,7 +98,9 @@ public class CharacterManager : MonoBehaviour
         Debug.Log($"[CharacterManager] 플레이어 생성 완료: {playerInstance.name} at {position}");
     }
 
-    // 씬에 이미 존재하는 플레이어를 등록
+    /// <summary>
+    /// 씬에 이미 존재하는 플레이어를 등록 (수동 배치된 경우)
+    /// </summary>
     public void RegisterPlayer(GameObject player)
     {
         if (player == null)
@@ -127,7 +116,9 @@ public class CharacterManager : MonoBehaviour
         Debug.Log($"[CharacterManager] 플레이어 등록 완료: {player.name}");
     }
 
-    // 씬에서 플레이어를 자동으로 찾아서 등록
+    /// <summary>
+    /// 씬에서 플레이어를 자동으로 찾아서 등록
+    /// </summary>
     public void FindAndRegisterPlayer()
     {
         if (playerInstance != null)
@@ -151,7 +142,9 @@ public class CharacterManager : MonoBehaviour
 
     // ========== 플레이어 존재 여부 확인 ==========
 
-    // 플레이어가 존재하는지 확인
+    /// <summary>
+    /// 플레이어가 존재하는지 확인
+    /// </summary>
     public bool HasPlayer()
     {
         return playerInstance != null;
