@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class GameStart : MonoBehaviour
 {
     public GameObject buttonObject;
-    public GameObject optionObject;
+    public Option optionObject;
 
     public Button gameStart;
     public Button options;
     public Button exit;
     
+    public RectTransform optionRect;
+
     public bool optionPressed = false;
 
     void Start()
@@ -21,7 +24,8 @@ public class GameStart : MonoBehaviour
         options.onClick.AddListener(Option);
         exit.onClick.AddListener(Exit);
 
-        optionObject.SetActive(false);
+        optionObject.gameObject.SetActive(false);
+        optionRect = optionObject.gameObject.GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -34,19 +38,19 @@ public class GameStart : MonoBehaviour
     public void StartGame()
     {
         buttonObject.SetActive(false);
+        SceneManager.LoadScene("Ui_Test_Scene");
     }
 
     public void Option()
     {
-        optionObject.SetActive(!optionPressed);
+		optionRect.DOKill();
+		optionObject.isOpen = false;
+	    optionRect.DOAnchorPos(Vector3.zero, 0f);
+		
+		optionObject.gameObject.SetActive(!optionPressed);
 		gameStart.interactable = optionPressed;
 		exit.interactable = optionPressed;
 		optionPressed = !optionPressed;
-        if( optionPressed == false )
-        {
-			UIManager.Instance.option.OptionObject.DOAnchorPos(Vector3.zero, UIManager.Instance.option.moveDuration);
-		}
-        
     }
 
     public void Exit()
