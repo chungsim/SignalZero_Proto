@@ -8,6 +8,7 @@ public class FieldManager : MonoBehaviour
 {
     public List<GameObject> fields;
     public event Action spawn;
+    public List<GameObject> spawnFields;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,7 @@ public class FieldManager : MonoBehaviour
 			float x = (i % 10) * 200f;
             float z = (i / 10) * 200f;
             spawnField.transform.position = new Vector3(x, y, z);
+            spawnFields.Add(spawnField);
 		}
     }
 

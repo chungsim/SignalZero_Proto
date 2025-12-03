@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 	public UIManager uiManager;
 	public FieldManager fieldManager;
 	public CharacterManager characterManager;
+	public MonsterSpawnManager monsterSpawnManager;
 
 	private void Awake()
 	{
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
 			uiManager = FindObjectOfType<UIManager>();
 			uiManager.characterUI = FindObjectOfType<CharacterUI>();
 			fieldManager = FindObjectOfType<FieldManager>();
+			monsterSpawnManager = FindObjectOfType<MonsterSpawnManager>();
 		}
 		else if (scene.name == "Ui_Test_Scene")
 		{
