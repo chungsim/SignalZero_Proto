@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class MonsterSpawnManager : MonoBehaviour
 {
-    public static MonsterSpawnManager Instance;
 
     [Header("SO")]
     [SerializeField] private MonsterDatas monsterDatas;
@@ -17,14 +16,6 @@ public class MonsterSpawnManager : MonoBehaviour
     [Header("Boss")]
     [SerializeField] private int bossSpawnCount;
     [SerializeField] private int curMidKillCount;
-
-    void Awake()
-    {
-        // 싱글톤
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
 
     void Start()
     {
