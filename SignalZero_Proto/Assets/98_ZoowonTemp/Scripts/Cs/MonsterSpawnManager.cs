@@ -26,6 +26,14 @@ public class MonsterSpawnManager : MonoBehaviour
         visitedFields.Clear();
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            SpawnBoss();
+        }
+    }
+
     public bool AddField(Field curField)
     {
         // 처음 방문한 필드이면 리스트에 적재, 현재 필드 업데이트

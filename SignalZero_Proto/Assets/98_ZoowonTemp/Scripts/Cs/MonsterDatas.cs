@@ -19,6 +19,8 @@ public class MonsterData
     public float attackRange;
     public int contactDps;
     public MonsterBehavior[] monsterbehaviors;
+    public float spawnCoolTime;
+    public GameObject boss;
 }
 
 [CreateAssetMenu(fileName = "MonsterDatas", menuName = "GameData/Monster Datas")]

@@ -19,6 +19,8 @@ public class MonsterMoveState : MonsterBaseState
     public float separateDistance;
     public float attackRangeGap = 0.25f;
     private float rotateSpeed = 3f;
+
+    private float nextSpawnTime;
     
     public override void OnStateEnter()
     {
@@ -44,10 +46,15 @@ public class MonsterMoveState : MonsterBaseState
             if(monsterBehavior == MonsterBehavior.Chase)
             {
                 Chase();
+                if(_monster.monsterData.monsterRole == MonsterRoles.Boss)
+                {
+                    SpawnMinion();
+                }
             }
             else if (monsterBehavior == MonsterBehavior.Flee)
             {
                 Flee();
+                SpawnMinion();
             }
             
             AvoidOtherMonsters();
@@ -133,5 +140,13 @@ public class MonsterMoveState : MonsterBaseState
         }
 
         _monster.transform.position += separationForce * Time.deltaTime * 1.5f;
+    }
+
+    private void SpawnMinion()
+    {
+        if (Time.time < nextSpawnTime) return;
+
+        GameManager.Instance.monsterSpawnManager.SpawnMinion(_monster.transform, 4);
+        nextSpawnTime = Time.time + _monster.monsterData.spawnCoolTime;      
     }
 }

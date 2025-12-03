@@ -74,10 +74,12 @@ MonoBehaviour:
     maxHp: 600
     curHp: 600
     moveSpeed: 13
-    detectRange: 1000
+    detectRange: 3000
     attackRange: 30
     contactDps: 0
     monsterbehaviors: 0100000003000000
+    spawnCoolTime: 5
+    boss: {fileID: 0}
   maxHp: 0
   curHp: 0
   curState: 0
