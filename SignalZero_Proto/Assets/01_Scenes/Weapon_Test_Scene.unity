@@ -2002,6 +2002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolSettings:
   - {fileID: 11400000, guid: ba7b8cf121584f54fb16ef2e224abd3b, type: 2}
+  - {fileID: 11400000, guid: de90ea2751d6d5e4c8fd67c7204e1dd4, type: 2}
 --- !u!1 &1512850763
 GameObject:
   m_ObjectHideFlags: 0
@@ -2521,8 +2522,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a696d40e6f8944787629febd135155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementStats: {fileID: 0}
-  combatStats: {fileID: 0}
+  movementStats: {fileID: 11400000, guid: 9d751d5cb465f4c4ca2ac1ca9619ed3f, type: 2}
+  combatStats: {fileID: 11400000, guid: 02f565d06a6f19f45bd841d5a59311a3, type: 2}
 --- !u!65 &1876610712
 BoxCollider:
   m_ObjectHideFlags: 0
