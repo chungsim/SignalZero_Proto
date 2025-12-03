@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour
 			uiManager.characterUI = FindObjectOfType<CharacterUI>();
 			fieldManager = FindObjectOfType<FieldManager>();
 			monsterSpawnManager = FindObjectOfType<MonsterSpawnManager>();
+			
+			uiManager.characterUI.Init();
 		}
 		else if (scene.name == "Ui_Test_Scene")
 		{
