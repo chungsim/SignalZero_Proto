@@ -16,6 +16,6 @@ MonoBehaviour:
   numPerShot: 6
   spreadAngle: 10
   damageType: Echo
-  projectileTypeID: 0
+  projectileTypeID: 1
   modelID: 2
   bulletData: {fileID: 11400000, guid: f1e6aa046b308654c80faf584de02ae0, type: 2}

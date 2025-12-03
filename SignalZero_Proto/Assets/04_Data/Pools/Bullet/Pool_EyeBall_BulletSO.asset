@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a19ce1cd12769844fa3d59e271f59b44, type: 3}
   m_Name: Pool_EyeBall_BulletSO
   m_EditorClassIdentifier: 
-  key: 0
+  key: 1
   prefab: {fileID: 5444973165149790785, guid: 002ed74f2bfa32247a38e17711b248a5, type: 3}
   initialCount: 20
