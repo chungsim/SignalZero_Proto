@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    public GameStart gameStart;
-    public Option option;
     public CharacterUI characterUI;
 
     private static UIManager instance;
@@ -17,12 +15,8 @@ public class UIManager : MonoBehaviour
 		if (instance == null)
 		{
 			instance = this;
-			DontDestroyOnLoad(gameObject);
 		}
-		else
-		{
-			Destroy(gameObject);
-		}
+	
     }
 
     // Update is called once per frame

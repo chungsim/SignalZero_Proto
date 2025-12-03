@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
 	[Header("갖고있는 매니저")]
 	public UIManager uiManager;
 	public FieldManager fieldManager;
-
+	public CharacterManager characterManager;
+	public MonsterSpawnManager monsterSpawnManager;
 
 	private void Awake()
 	{
@@ -50,14 +51,17 @@ public class GameManager : MonoBehaviour
 
 		if (scene.name == "MainScene")
 		{
-			
+			characterManager = FindObjectOfType<CharacterManager>();
+			uiManager = FindObjectOfType<UIManager>();
+			uiManager.characterUI = FindObjectOfType<CharacterUI>();
+			fieldManager = FindObjectOfType<FieldManager>();
+			monsterSpawnManager = FindObjectOfType<MonsterSpawnManager>();
 		}
 		else if (scene.name == "Ui_Test_Scene")
 		{
 			uiManager = FindObjectOfType<UIManager>();
 			uiManager.characterUI = FindObjectOfType<CharacterUI>();
 			fieldManager = FindObjectOfType<FieldManager>();
-			fieldManager.Init();
 		}
 		else if (scene.name == "EndingScene")
 		{
