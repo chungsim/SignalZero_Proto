@@ -67,8 +67,18 @@ public class GameManager : MonoBehaviour
 			uiManager.characterUI = FindObjectOfType<CharacterUI>();
 			fieldManager = FindObjectOfType<FieldManager>();
 			monsterSpawnManager = FindObjectOfType<MonsterSpawnManager>();
-			
-			uiManager.characterUI.Init();
+
+            if (characterManager != null)
+            {
+                characterManager.FindAndRegisterPlayer();
+                Debug.Log("[GameManager] 플레이어 등록 완료!");
+            }
+            else
+            {
+                Debug.LogError("[GameManager] CharacterManager를 찾을 수 없습니다!");
+            }
+
+            uiManager.characterUI.Init();
 			Init.Invoke();
 		}
 		else if (scene.name == "Ui_Test_Scene")
