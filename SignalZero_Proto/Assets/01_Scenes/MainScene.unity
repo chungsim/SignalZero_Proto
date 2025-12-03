@@ -1080,10 +1080,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1546787526}
   offset: {x: 0, y: 10, z: -10}
-  normalSmoothTime: 0.2
   normalMaxLagDistance: 5
   normalFov: 60
-  actionSmoothTime: 0.35
   actionMaxLagDistance: 8
   actionFov: 50
   paramLerpSpeed: 10
@@ -1683,22 +1681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a696d40e6f8944787629febd135155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats:
-    minSpeed: 1
-    maxSpeed: 10
-    maxSpeedDistance: 5
-    deadlineRadius: 0.5
-    burstDistance: 5
-    burstDelay: 0.3
-    burstSlowSpeed: 0.4
-    burstCost: 20
-    burstCooldown: 1
-    boosterSpeed: 15
-    boosterCostPerTick: 5
-    maxGauge: 100
-    gaugeRegenRate: 10
-    gaugeRegenDelay: 0.5
-    gaugeZeroLockTime: 2
+  stats: {fileID: 11400000, guid: 006ce04a4666f6349af1c3e9df3f39ff, type: 2}
 --- !u!65 &1546787523
 BoxCollider:
   m_ObjectHideFlags: 0
