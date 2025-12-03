@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("스탯")]
-    public PlayerStats stats;
+    public PlayerMovementStats movementStats;  // 이동 관련 스탯
+    public PlayerCombatStats combatStats;      // 전투 관련 스탯
 
     private PlayerInputActions inputActions;
     private Rigidbody rb;
@@ -39,6 +40,10 @@ public class PlayerController : MonoBehaviour
     // 쿨타임
     private float burstCooldownTimer = 0f;
 
+    // ===== HP 시스템 추가 =====
+    private float currentHp;
+    private bool isDead = false;
+
     private enum PlayerState
     {
         Normal,
@@ -52,7 +57,12 @@ public class PlayerController : MonoBehaviour
         inputActions = new PlayerInputActions();
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
-        currentGauge = stats.maxGauge;
+
+        // 게이지 초기화
+        currentGauge = combatStats.gaugeMax;
+
+        // HP 초기화
+        currentHp = combatStats.hpMax;
 
         weaponManager = GetComponent<PlayerWeaponManager>(); // WeaponManager 캐싱
     }
@@ -78,6 +88,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // 사망 상태면 업데이트 중지
+        if (isDead) return;
+
         UpdateMouseWorldPosition();
         UpdateGauge();
         UpdateCooldowns();
@@ -104,6 +117,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isDead) return;
         ApplyMovement();
     }
 
@@ -127,7 +141,7 @@ public class PlayerController : MonoBehaviour
         float distanceToMouse = toMouse.magnitude;
 
         // 데드라인 체크
-        if (distanceToMouse <= stats.deadlineRadius)
+        if (distanceToMouse <= movementStats.deadlineRadius)
         {
             moveDirection = Vector3.zero;
             currentSpeed = 0f;
@@ -140,9 +154,9 @@ public class PlayerController : MonoBehaviour
         // 속도 계산 (선형 보간)
         // 데드라인 경계 ~ maxSpeedDistance까지 minSpeed → maxSpeed
         float speedProgress = Mathf.Clamp01(
-            (distanceToMouse - stats.deadlineRadius) / stats.maxSpeedDistance
+            (distanceToMouse - movementStats.deadlineRadius) / movementStats.maxSpeedDistance
         );
-        currentSpeed = Mathf.Lerp(stats.minSpeed, stats.maxSpeed, speedProgress);
+        currentSpeed = Mathf.Lerp(movementStats.minSpeed, movementStats.moveSpeed, speedProgress);
 
         // 회전
         if (moveDirection != Vector3.zero)
@@ -151,7 +165,7 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(
                 transform.rotation,
                 targetRotation,
-                Time.deltaTime * 10f
+                Time.deltaTime * movementStats.turnSpeed
             );
         }
     }
@@ -163,12 +177,12 @@ public class PlayerController : MonoBehaviour
         if (burstCooldownTimer > 0) return;
 
         // 게이지 체크
-        if (currentGauge < stats.burstCost) return;
+        if (currentGauge < combatStats.burstCon) return;
 
         // 벽 뚫기 불가
         Vector3 toMouse = mouseWorldPosition - transform.position;
         toMouse.y = 0;
-        if (toMouse.magnitude <= stats.deadlineRadius) return;
+        if (toMouse.magnitude <= movementStats.deadlineRadius) return;
 
         //대쉬상태인지
         isDashing = true;
@@ -176,12 +190,12 @@ public class PlayerController : MonoBehaviour
 
         // 버스트 시작
         currentState = PlayerState.BurstDelay;
-        burstDelayTimer = stats.burstDelay;
+        burstDelayTimer = combatStats.burstDelay;
         burstDirection = toMouse.normalized;
 
         // 게이지 소모
-        currentGauge -= stats.burstCost;
-        gaugeRegenTimer = stats.gaugeRegenDelay;
+        currentGauge -= combatStats.burstCon;
+        gaugeRegenTimer = combatStats.gaugeRegen;
 
         // 회전
         transform.rotation = Quaternion.LookRotation(burstDirection);
@@ -194,7 +208,7 @@ public class PlayerController : MonoBehaviour
 
         // 감속 이동
         moveDirection = burstDirection;
-        currentSpeed = stats.burstSlowSpeed;
+        currentSpeed = combatStats.burstSlow;
 
         if (burstDelayTimer <= 0)
         {
@@ -208,11 +222,11 @@ public class PlayerController : MonoBehaviour
     void PerformBurstDash()
     {
         // 순간 이동
-        Vector3 targetPosition = transform.position + burstDirection * stats.burstDistance;
+        Vector3 targetPosition = transform.position + burstDirection * combatStats.burstRange;
         transform.position = targetPosition;
 
         // 쿨타임 시작
-        burstCooldownTimer = stats.burstCooldown;
+        burstCooldownTimer = combatStats.burstCool;
 
         // 우클릭 누르고 있으면 부스터로, 아니면 일반으로
         if (isDashing && currentGauge > 0)
@@ -240,8 +254,8 @@ public class PlayerController : MonoBehaviour
     void UpdateBooster()
     {
         // 게이지 소모
-        currentGauge -= stats.boosterCostPerTick * (Time.deltaTime / 0.1f);
-        gaugeRegenTimer = stats.gaugeRegenDelay;
+        currentGauge -= combatStats.boosterCon * (Time.deltaTime / 0.1f);
+        gaugeRegenTimer = combatStats.gaugeRegen;
 
         // 게이지 또는 입력 종료 체크
         if (currentGauge <= 0 || !isDashing)
@@ -249,8 +263,8 @@ public class PlayerController : MonoBehaviour
             Debug.Log(">>> [부스터 종료]");
             currentState = PlayerState.Normal;
             isBoosterActive = false;
-            burstCooldownTimer = stats.burstCooldown;
-            isDashing = false; 
+            burstCooldownTimer = combatStats.burstCool;
+            isDashing = false;
             return;
         }
 
@@ -261,14 +275,14 @@ public class PlayerController : MonoBehaviour
         if (toMouse.magnitude > 0.1f)
         {
             moveDirection = toMouse.normalized;
-            currentSpeed = stats.boosterSpeed;
+            currentSpeed = combatStats.boosterSpeed;
 
             // 회전
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
             transform.rotation = Quaternion.Slerp(
                 transform.rotation,
                 targetRotation,
-                Time.deltaTime * 10f
+                Time.deltaTime * movementStats.turnSpeed
             );
         }
     }
@@ -305,7 +319,7 @@ public class PlayerController : MonoBehaviour
         if (currentGauge <= 0)
         {
             gaugeZeroLockTimer += Time.deltaTime;
-            if (gaugeZeroLockTimer < stats.gaugeZeroLockTime)
+            if (gaugeZeroLockTimer < combatStats.gaugeLock)
                 return;
         }
         else
@@ -314,10 +328,10 @@ public class PlayerController : MonoBehaviour
         }
 
         // 게이지 회복
-        if (currentGauge < stats.maxGauge)
+        if (currentGauge < combatStats.gaugeMax)
         {
-            currentGauge += stats.gaugeRegenRate * Time.deltaTime;
-            currentGauge = Mathf.Clamp(currentGauge, 0, stats.maxGauge);
+            currentGauge += combatStats.gaugeRecovery * Time.deltaTime;
+            currentGauge = Mathf.Clamp(currentGauge, 0, combatStats.gaugeMax);
         }
     }
 
@@ -325,6 +339,56 @@ public class PlayerController : MonoBehaviour
     {
         if (burstCooldownTimer > 0)
             burstCooldownTimer -= Time.deltaTime;
+    }
+
+    // ===== HP 시스템 =====
+
+    // 플레이어가 데미지를 받음
+    public void TakeDamage(float damage)
+    {
+        if (isDead) return;
+
+        currentHp -= damage;
+        currentHp = Mathf.Max(0, currentHp);
+
+        Debug.Log($"[PlayerController] 데미지 {damage} 받음! 현재 HP: {currentHp}/{combatStats.hpMax}");
+
+        // HP가 0 이하면 사망
+        if (currentHp <= 0)
+        {
+            Die();
+        }
+    }
+
+    /// 플레이어 사망 처리
+    private void Die()
+    {
+        if (isDead) return;
+
+        isDead = true;
+        Debug.Log("[PlayerController] 플레이어 사망!");
+
+        // 이동 정지
+        currentSpeed = 0f;
+        moveDirection = Vector3.zero;
+        rb.velocity = Vector3.zero;
+
+        // 입력 비활성화
+        if (inputActions != null)
+        {
+            inputActions.Player.Disable();
+        }
+
+        // TODO: 사망 애니메이션, 이펙트, UI 표시
+        // TODO: GameManager에 게임 오버 알림
+
+        // 임시: 3초 후 오브젝트 비활성화
+        Invoke(nameof(DeactivatePlayer), 3f);
+    }
+
+    private void DeactivatePlayer()
+    {
+        gameObject.SetActive(false);
     }
 
     // === 카메라용 Getter ===
@@ -345,6 +409,7 @@ public class PlayerController : MonoBehaviour
                currentState == PlayerState.Booster;
     }
 
+    // === 게이지 Getter ===
     public float GetCurrentGauge()
     {
         return currentGauge;
@@ -352,6 +417,22 @@ public class PlayerController : MonoBehaviour
 
     public float GetMaxGauge()
     {
-        return stats.maxGauge;
+        return combatStats.gaugeMax;
+    }
+
+    // ===== HP Getter 추가 =====
+    public float GetCurrentHp()
+    {
+        return currentHp;
+    }
+
+    public float GetMaxHp()
+    {
+        return combatStats.hpMax;
+    }
+
+    public bool IsDead()
+    {
+        return isDead;
     }
 }

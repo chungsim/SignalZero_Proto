@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 972547696992975808}
   m_Layer: 0
-  m_Name: Weapon_TestModel_1
+  m_Name: Weapon_Lazer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

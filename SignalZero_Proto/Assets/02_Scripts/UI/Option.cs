@@ -1,65 +1,88 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
-
+enum OptionType
+{
+	None,
+	Sound,
+	Graphics,
+	Control
+}
 public class Option : MonoBehaviour
 {
-    public RectTransform OptionObject;
-    
-    public Button sound;
-    public Button graphics;
-    public Button control;
+	public RectTransform optionRect;
 
-    public Vector3 originalPosition = Vector3.zero;
-    public Vector3 movePosition;
+	public Button sound;
+	public Button graphics;
+	public Button control;
 
-    [Range(0,10f)]public float moveDuration = 0.5f;
+	public Vector3 originalPosition = Vector3.zero;
+	public Vector3 movePosition;
 
-    bool isClicked = false;
+	[Range(0, 10f)] public float moveDuration = 0.5f;
 
-    // Start is called before the first frame updatef
-    void Start()
-    {
-        sound.onClick.AddListener(clickSound);
-        graphics.onClick.AddListener(clickGraphics);
-        control.onClick.AddListener(clickControl);
-    }
+	private OptionType currentOption = OptionType.None;
+	public bool isOpen = false;
 
-    // Update is called once per frame
-    void Update()
-    {
+	// Start is called before the first frame updatef
+	void Start()
+	{
+		movePosition = new Vector2(-458f, originalPosition.y);
+
+		sound.onClick.AddListener(ClickSound);
+		graphics.onClick.AddListener(ClickGraphics);
+		control.onClick.AddListener(ClickControl);
 	}
 
-    public void animation()
-    {
-        Vector3 moveVector = new Vector3 (-458f, originalPosition.y, originalPosition.z);
-        movePosition = moveVector;
-        if (isClicked == true)
-        {
-			OptionObject.DOAnchorPos(movePosition, moveDuration);
+	// Update is called once per frame
+	void Update()
+	{
+	}
+
+	void OpenPanel()
+	{
+		optionRect.DOKill();
+		optionRect.DOAnchorPos(movePosition, moveDuration);
+		isOpen = true;
+	}
+
+	void ClosePanel()
+	{
+		optionRect.DOKill();
+		optionRect.DOAnchorPos(originalPosition, moveDuration);
+		isOpen = false;
+		currentOption = OptionType.None;
+	}
+
+	void ClickSound()
+	{
+		HandleOptionClick(OptionType.Sound);
+	}
+	void ClickGraphics()
+	{
+		HandleOptionClick(OptionType.Graphics);
+	}
+	void ClickControl()
+	{
+		HandleOptionClick(OptionType.Control);
+	}
+
+	void HandleOptionClick(OptionType clicked)
+	{
+		if (!isOpen)
+		{
+			currentOption = clicked;
+			OpenPanel();
+			return;
 		}
-        else if( isClicked == false)
-        {
-			OptionObject.DOAnchorPos(originalPosition, moveDuration);
-        }
-    }
 
-    void clickSound()
-    {
-		animation();
-		isClicked = ! isClicked;
+		if (currentOption == clicked)
+		{
+			ClosePanel();
+		}
+		else
+		{
+			currentOption = clicked;
+		}
 	}
-    void clickGraphics()
-    {
-		animation();
-		isClicked = !isClicked;
-	}
-    void clickControl()
-    {
-		animation();
-		isClicked = !isClicked;
-	}
-     
 }

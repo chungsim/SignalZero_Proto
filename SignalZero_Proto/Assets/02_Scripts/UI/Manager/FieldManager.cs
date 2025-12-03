@@ -12,9 +12,9 @@ public class FieldManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ShuffleList(fields);
-        fieldReorder();
-    }
+		ShuffleList(fields);
+		fieldReorder();
+	}
 
     // Update is called once per frame
     void Update()
@@ -22,19 +22,26 @@ public class FieldManager : MonoBehaviour
         
     }
 
+    public void Init()
+    {
+		ShuffleList(fields);
+		fieldReorder();
+	}
+
     void fieldReorder()
-    {  
+    {
+		foreach (Transform child in transform)
+		{
+			Destroy(child.gameObject);
+		}
 		float y = -1f;
-        for(int i = 0;  i < 200; i++)
+        for(int i = 0;  i < 100; i++)
 		{
             int q = UnityEngine.Random.Range(0, fields.Count);
             GameObject spawnField = Instantiate(fields[q],this.transform);
 			float x = (i % 10) * 200f;
             float z = (i / 10) * 200f;
             spawnField.transform.position = new Vector3(x, y, z);
-           
-
-
 		}
     }
 
