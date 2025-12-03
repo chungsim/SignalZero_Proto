@@ -25,6 +25,7 @@ public class MonsterMoveState : MonsterBaseState
         moveSpeed = _monster.monsterData.moveSpeed;
         curSpeed = moveSpeed;
         separateDistance = _monster.monsterData.attackRange / 2;
+        playerTransform = GameManager.Instance.characterManager.GetPlayerTransform();
 
         if(Array.Exists(_monster.monsterData.monsterbehaviors, element => element == MonsterBehavior.Chase))
         {
@@ -39,8 +40,6 @@ public class MonsterMoveState : MonsterBaseState
     {
         if (canMove)
         {
-            //  임시 플레이어
-            playerTransform = GameObject.Find("Player (1)").transform;
             
             if(monsterBehavior == MonsterBehavior.Chase)
             {

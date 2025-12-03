@@ -28,19 +28,19 @@ public class SectionDetector : MonoBehaviour
             Field field;
             if(hitData.collider.TryGetComponent<Field>(out field))
             {
-                if (MonsterSpawnManager.Instance.AddField(field))
+                if (GameManager.Instance.monsterSpawnManager.AddField(field))
                 {
                     // 몬스터 스폰 구분, 추후 SO를 이용한 인덱스나 사전으로 교체 필요
                     switch (field.type)
                     {
                         case FieldType.radioShip:
                             Debug.Log("RadioShip Section");
-                            MonsterSpawnManager.Instance.SpawnMonsters(monsterSpawnDatas[0]);
+                            GameManager.Instance.monsterSpawnManager.SpawnMonsters(monsterSpawnDatas[0]);
                             break;
                         
                         case FieldType.common:
                             Debug.Log("Common Section");
-                            MonsterSpawnManager.Instance.SpawnMonsters(monsterSpawnDatas[1]);
+                            GameManager.Instance.monsterSpawnManager.SpawnMonsters(monsterSpawnDatas[1]);
                             break;
                     }
                 }                

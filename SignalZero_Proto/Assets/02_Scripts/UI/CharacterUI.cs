@@ -21,6 +21,11 @@ public class CharacterUI : MonoBehaviour
        
     }
 
+    public void Init()
+    {
+        player = GameManager.Instance.characterManager.GetPlayerTransform();
+    }
+
     // Update is called once per frame
     void Update()
     {
