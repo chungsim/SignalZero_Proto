@@ -15,3 +15,8 @@ public interface IPoolable
     // Pool로 돌아가기 직전에 호출됨
     void OnDespawn();
 }
+
+public interface IDamageAble
+{
+    void GetDamage(int damage);    
+}

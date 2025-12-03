@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public class Monster : MonoBehaviour, IDamageAble
 {
     public MonsterData monsterData;
     private float stateUpdateDuration = 0.1f;
@@ -109,7 +109,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void GetDamage(int damage)
     {
         int result = curHp - damage;
         curHp = result > 0 ? result : 0;
@@ -122,6 +122,12 @@ public class Monster : MonoBehaviour
 
     private void Die()
     {
+        // 중간 보스 킬 카운트
+        if(monsterData.monsterRole == MonsterRoles.MidBoss)
+        {
+            GameManager.Instance.monsterSpawnManager.AddMidKillCount();
+        }
+
         if(monsterData.monsterRole == MonsterRoles.Boss)
         {
             // 게임 메니저의 게임 종료 연결
