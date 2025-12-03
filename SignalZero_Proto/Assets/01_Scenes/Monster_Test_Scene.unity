@@ -260,7 +260,7 @@ PrefabInstance:
     - target: {fileID: 7924030041680926454, guid: 0c81166eca896664aa72e0e55c1abaa1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.1897674
+      value: -11.83
       objectReference: {fileID: 0}
     - target: {fileID: 7924030041680926454, guid: 0c81166eca896664aa72e0e55c1abaa1,
         type: 3}
@@ -270,7 +270,7 @@ PrefabInstance:
     - target: {fileID: 7924030041680926454, guid: 0c81166eca896664aa72e0e55c1abaa1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.6893387
+      value: -0.51
       objectReference: {fileID: 0}
     - target: {fileID: 7924030041680926454, guid: 0c81166eca896664aa72e0e55c1abaa1,
         type: 3}
@@ -347,8 +347,10 @@ MonoBehaviour:
   monsterSpawnDatas:
   - {fileID: 11400000, guid: 3f8b717579fe713448387f6881d89bb5, type: 2}
   - {fileID: 11400000, guid: 62d4d7ca8b1863e43b86f7ac7fbd59c3, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 0702deeb799085547b342fa0882bb7db, type: 2}
   - {fileID: 11400000, guid: e8aa39479d9526e498caf540025d9cfe, type: 2}
+  bossSpawnCount: 0
+  curMidKillCount: 0
 --- !u!4 &1130554433
 Transform:
   m_ObjectHideFlags: 0
@@ -581,7 +583,7 @@ Transform:
   m_GameObject: {fileID: 1682206880}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: -4.1, y: 0, z: -0.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -736,7 +738,7 @@ PrefabInstance:
     - target: {fileID: 318679232521915596, guid: 969cd7891d1cc44409c01b264904ad29,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 184.4
+      value: -17.2
       objectReference: {fileID: 0}
     - target: {fileID: 318679232521915596, guid: 969cd7891d1cc44409c01b264904ad29,
         type: 3}
@@ -872,7 +874,7 @@ PrefabInstance:
     - target: {fileID: 4392838133097728686, guid: 167b26bead8b10c449cb926904995443,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: -6.95
       objectReference: {fileID: 0}
     - target: {fileID: 4392838133097728686, guid: 167b26bead8b10c449cb926904995443,
         type: 3}

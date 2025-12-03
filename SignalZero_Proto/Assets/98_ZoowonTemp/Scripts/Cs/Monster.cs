@@ -122,6 +122,11 @@ public class Monster : MonoBehaviour
 
     private void Die()
     {
+        if(monsterData.monsterRole == MonsterRoles.Boss)
+        {
+            // 게임 메니저의 게임 종료 연결
+        }
+        
         Destroy(gameObject);
     }
 

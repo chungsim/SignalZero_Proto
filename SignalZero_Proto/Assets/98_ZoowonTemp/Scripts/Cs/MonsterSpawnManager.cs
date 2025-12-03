@@ -14,6 +14,10 @@ public class MonsterSpawnManager : MonoBehaviour
     [SerializeField] private Transform curFieldTarnsform;
     [SerializeField] private List<MonsterSpawnData> monsterSpawnDatas;
 
+    [Header("Boss")]
+    [SerializeField] private int bossSpawnCount;
+    [SerializeField] private int curMidKillCount;
+
     void Awake()
     {
         // 싱글톤
@@ -60,9 +64,26 @@ public class MonsterSpawnManager : MonoBehaviour
         for(int i = 0; i < num; i++)
         {
             Vector3 spawnPos = bossTransform.position + bossTransform.forward * -UnityEngine.Random.Range(10, 30) + bossTransform.right * UnityEngine.Random.Range(-20  , 20) ;
-           GameObject go = Instantiate(monsterSpawnDatas[3].monsterPosPairs[0].monsterPrefab, transform);
-           go. transform.position = spawnPos;
+            GameObject go = Instantiate(monsterSpawnDatas[3].monsterPosPairs[0].monsterPrefab, transform);
+            go. transform.position = spawnPos;
         }  
+    }
+
+    public void SpawnBoss()
+    {
+        GameObject go = Instantiate(monsterSpawnDatas[2].monsterPosPairs[0].monsterPrefab, transform);
+        // 필드 메니저에서 비교
+        
+    }
+
+    public void AddMidKillCount()
+    {
+        curMidKillCount++;
+
+        if(curMidKillCount >= bossSpawnCount)
+        {
+            SpawnBoss();
+        }
     }
 
 }
