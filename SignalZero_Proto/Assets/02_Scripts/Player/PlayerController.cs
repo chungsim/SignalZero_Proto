@@ -33,16 +33,16 @@ public class PlayerController : MonoBehaviour
     private bool isBoosterActive = false;
 
     // 게이지
-    private float currentGauge;
-    private float gaugeRegenTimer = 0f;
-    private float gaugeZeroLockTimer = 0f;
+    public float currentGauge;
+    public float gaugeRegenTimer = 0f;
+    public float gaugeZeroLockTimer = 0f;
 
     // 쿨타임
-    private float burstCooldownTimer = 0f;
+    public float burstCooldownTimer = 0f;
 
     // ===== HP 시스템 추가 =====
-    private float currentHp;
-    private bool isDead = false;
+    public float currentHp;
+    public bool isDead = false;
 
     private enum PlayerState
     {
