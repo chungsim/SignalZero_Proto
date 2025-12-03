@@ -217,7 +217,7 @@ PrefabInstance:
     - target: {fileID: 7924030041680926454, guid: 0c81166eca896664aa72e0e55c1abaa1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.83
+      value: -9.69
       objectReference: {fileID: 0}
     - target: {fileID: 7924030041680926454, guid: 0c81166eca896664aa72e0e55c1abaa1,
         type: 3}
@@ -227,7 +227,7 @@ PrefabInstance:
     - target: {fileID: 7924030041680926454, guid: 0c81166eca896664aa72e0e55c1abaa1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.51
+      value: -2.88
       objectReference: {fileID: 0}
     - target: {fileID: 7924030041680926454, guid: 0c81166eca896664aa72e0e55c1abaa1,
         type: 3}
@@ -486,7 +486,7 @@ Transform:
   m_GameObject: {fileID: 1682206880}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.1, y: 0, z: -0.28}
+  m_LocalPosition: {x: -5.8, y: 0, z: -0.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -782,7 +782,7 @@ PrefabInstance:
     - target: {fileID: 7924030041680926454, guid: 0bb92f37c3f483144b9426a89e0c7b5e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: -9.33
       objectReference: {fileID: 0}
     - target: {fileID: 7924030041680926454, guid: 0bb92f37c3f483144b9426a89e0c7b5e,
         type: 3}
@@ -845,7 +845,7 @@ PrefabInstance:
     - target: {fileID: 4392838133097728686, guid: 167b26bead8b10c449cb926904995443,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.95
+      value: -10.07
       objectReference: {fileID: 0}
     - target: {fileID: 4392838133097728686, guid: 167b26bead8b10c449cb926904995443,
         type: 3}
@@ -855,7 +855,7 @@ PrefabInstance:
     - target: {fileID: 4392838133097728686, guid: 167b26bead8b10c449cb926904995443,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 6.57
       objectReference: {fileID: 0}
     - target: {fileID: 4392838133097728686, guid: 167b26bead8b10c449cb926904995443,
         type: 3}

@@ -27,4 +27,19 @@ MonoBehaviour:
     spawnLocalPos: {x: -10, y: 0, z: -10}
   - monsterPrefab: {fileID: 7054851560030409305, guid: 0bb92f37c3f483144b9426a89e0c7b5e,
       type: 3}
-    spawnLocalPos: {x: 10, y: 0, z: -10}
+    spawnLocalPos: {x: -30, y: 0, z: 30}
+  - monsterPrefab: {fileID: 7054851560030409305, guid: 0bb92f37c3f483144b9426a89e0c7b5e,
+      type: 3}
+    spawnLocalPos: {x: 30, y: 0, z: -30}
+  - monsterPrefab: {fileID: 7054851560030409305, guid: 0bb92f37c3f483144b9426a89e0c7b5e,
+      type: 3}
+    spawnLocalPos: {x: -60, y: 0, z: 60}
+  - monsterPrefab: {fileID: 7054851560030409305, guid: 0bb92f37c3f483144b9426a89e0c7b5e,
+      type: 3}
+    spawnLocalPos: {x: 60, y: 0, z: -60}
+  - monsterPrefab: {fileID: 7054851560030409305, guid: 0bb92f37c3f483144b9426a89e0c7b5e,
+      type: 3}
+    spawnLocalPos: {x: -80, y: 0, z: 80}
+  - monsterPrefab: {fileID: 7054851560030409305, guid: 0bb92f37c3f483144b9426a89e0c7b5e,
+      type: 3}
+    spawnLocalPos: {x: 80, y: 0, z: -80}

@@ -71,9 +71,9 @@ MonoBehaviour:
     id: 0
     name: 
     monsterRole: 0
-    maxHp: 10
-    curHp: 10
-    moveSpeed: 20
+    maxHp: 20
+    curHp: 20
+    moveSpeed: 8
     detectRange: 10
     attackRange: 2
     contactDps: 10
