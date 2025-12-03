@@ -271,7 +271,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiManager: {fileID: 0}
   fieldManager: {fileID: 0}
-  characterManager: {fileID: 0}
 --- !u!4 &417295771
 Transform:
   m_ObjectHideFlags: 0
