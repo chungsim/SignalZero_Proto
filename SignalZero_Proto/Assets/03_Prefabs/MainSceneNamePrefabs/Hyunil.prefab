@@ -109,6 +109,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 2297227198179607306}
   playerInstance: {fileID: 2297227198179607306}
+  playerTransform: {fileID: 0}
+  playerController: {fileID: 0}
 --- !u!1 &1243388725252883734
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,6 +361,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementStats: {fileID: 11400000, guid: 9d751d5cb465f4c4ca2ac1ca9619ed3f, type: 2}
   combatStats: {fileID: 11400000, guid: 02f565d06a6f19f45bd841d5a59311a3, type: 2}
+  currentGauge: 0
+  gaugeRegenTimer: 0
+  gaugeZeroLockTimer: 0
+  burstCooldownTimer: 0
+  currentHp: 0
+  isDead: 0
 --- !u!114 &8572463628792576161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,9 +380,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSlots:
-  - {fileID: 9011209062780071501}
   - {fileID: 3234450789326329280}
   - {fileID: 1985528288095504785}
+  - {fileID: 9011209062780071501}
   - {fileID: 3266316001875559914}
 --- !u!54 &4931063084503564484
 Rigidbody:
