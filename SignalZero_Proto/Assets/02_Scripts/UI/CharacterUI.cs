@@ -28,6 +28,8 @@ public class CharacterUI : MonoBehaviour
     public void Init()
     {
         player = GameManager.Instance.characterManager.GetPlayerTransform();
+        cam = Camera.main;
+
     }
 
     // Update is called once per frame
