@@ -16,6 +16,10 @@ public class MonsterSpawnManager : MonoBehaviour
     [Header("Boss")]
     [SerializeField] private int bossSpawnCount;
     [SerializeField] private int curMidKillCount;
+    [SerializeField] private float bossSpawnDistance;
+
+    [Header("Drop")]
+    [SerializeField] private GameObject[] dropItems;
 
     void Start()
     {
@@ -62,8 +66,22 @@ public class MonsterSpawnManager : MonoBehaviour
 
     public void SpawnBoss()
     {
+        Field randField;
+        while (true)
+        {
+            randField = GameManager.Instance.fieldManager.spawnFields[UnityEngine.Random.Range(0, GameManager.Instance.fieldManager.spawnFields.Count)].GetComponent<Field>();
+
+            if( !visitedFields.Contains(randField) && Vector3.Distance(randField.transform.position, GameManager.Instance.characterManager.GetPlayerTransform().position) > bossSpawnDistance)
+            {
+                break;
+            }
+        }
+        
         GameObject go = Instantiate(monsterSpawnDatas[2].monsterPosPairs[0].monsterPrefab, transform);
-        // 필드 메니저에서 비교
+        go.transform.position = randField.transform.position;
+
+        // 필드 메니저에서 
+        
         
     }
 
@@ -75,6 +93,12 @@ public class MonsterSpawnManager : MonoBehaviour
         {
             SpawnBoss();
         }
+    }
+
+    public void SpawnWeaponItem(Vector3 pos)
+    {
+        GameObject go = Instantiate(dropItems[UnityEngine.Random.Range(0, dropItems.Length)]);
+        go.transform.position = pos;
     }
 
 }
