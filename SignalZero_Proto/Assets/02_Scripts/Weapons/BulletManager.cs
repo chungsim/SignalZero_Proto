@@ -17,8 +17,19 @@ public class BulletManager : MonoBehaviour
 
     public void ApplyDamage(Collider target, float dmg)
     {
-        // TODO: HP가 있는 대상이라면 HP 감소 처리
-        Debug.Log($"Damage {dmg} to {target.name}");
+        // 충돌한 대상에서 IDamageAble 구현체 찾기
+        IDamageAble damageable = target.GetComponentInParent<IDamageAble>();
+
+        if (damageable != null)
+        {
+            damageable.GetDamage((int)dmg);
+        }
+        else
+        {
+            // 데미지를 받을 수 없는 오브젝트
+            Debug.Log($"대상 {target.name},은 IDamageAble이 아님" );
+        }
     }
+
 
 }
