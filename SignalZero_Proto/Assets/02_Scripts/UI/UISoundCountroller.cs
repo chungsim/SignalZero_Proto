@@ -30,28 +30,27 @@ public class UISoundCountroller : MonoBehaviour
 
 	}
 
-	void OnSliderValueChanged(float value)
-	{
-		volume.fillAmount = value * 0.1f;
-		switch (volumeType)
-		{
-			case VolumeType.Master:
-				float Mvolume = Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20f;
-				masterMixer.SetFloat("MasterParameter", Mvolume);
-				break;
-			case VolumeType.BGM:
-				float Bvolume = Mathf.Log10(Mathf.Clamp(value,0.001f,1f)) * 20f;
-				masterMixer.SetFloat("BGMParameter",Bvolume);
-				break;
-			case VolumeType.SFX:
-				float Svolume = Mathf.Log10(Mathf.Clamp(value,0.001f,1f)) * 20f;
-				masterMixer.SetFloat("SFXParameter",Svolume);
-				break;
-			default:
-				break;
-		}
-		
-	}
+    void OnSliderValueChanged(float value)
+    {
+        volume.fillAmount = value / 10f;
+
+        float normalized = value / 10f;
+        float dB = Mathf.Log10(Mathf.Clamp(normalized, 0.0001f, 1f)) * 20f;
+
+        switch (volumeType)
+        {
+            case VolumeType.Master:
+                masterMixer.SetFloat("MasterParameter", dB);
+                break;
+            case VolumeType.BGM:
+                masterMixer.SetFloat("BGMParameter", dB);
+                break;
+            case VolumeType.SFX:
+                masterMixer.SetFloat("SFXParameter", dB);
+                break;
+        }
+    }
+
 
 
 }
