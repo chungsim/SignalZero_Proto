@@ -15,7 +15,7 @@ public class PlayerCombatStats : ScriptableObject
     public float burstRange = 8f;
 
     [Tooltip("버스트 딜레이 - 버스트 발동 전 딜레이 시간 (이 시간 동안 감속)")]
-    public float burstDelay = 0.5f;
+    public float burstDelay = 0.2f;
 
     [Tooltip("버스트 딜레이 감쇠 - 버스트 딜레이 중 이동 속도 배율 (0.4 = 40% 속도)")]
     public float burstSlow = 0.4f;

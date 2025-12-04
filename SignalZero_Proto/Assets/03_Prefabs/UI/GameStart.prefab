@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7646381695319554569}
   - component: {fileID: 7460383419492079243}
+  - component: {fileID: 1059986069991431376}
   m_Layer: 5
   m_Name: SoundPanel
   m_TagString: Untagged
@@ -91,6 +92,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1059986069991431376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84175448959665096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154efabd3454b0a409bfe1e53f52c18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundSlider: {fileID: 7460383419492079243}
+  volume: {fileID: 6746315448715212256}
 --- !u!1 &133349529087933528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,7 +1159,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.2
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
