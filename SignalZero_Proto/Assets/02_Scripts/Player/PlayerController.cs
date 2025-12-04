@@ -259,7 +259,7 @@ public class PlayerController : MonoBehaviour, IDamageAble
         // boosterStartSFX = 버스트 사운드
         if (audioData != null && audioData.boosterStartSFX != null)
         {
-            AudioManager.Instance.PlaySFX(audioData.boosterStartSFX);
+            GameManager.Instance.audioManager.PlaySFX(audioData.boosterStartSFX);
         }
 
         Debug.Log(">>> [버스트 대쉬 시작] - 고속 이동 시작");
@@ -298,7 +298,7 @@ public class PlayerController : MonoBehaviour, IDamageAble
 
                 //  버스트 사운드(boosterStartSFX)는 이미 PerformBurstDash()에서 재생됨
                 // 부스터 전환 시에는 LoopSFX만 시작
-                AudioManager.Instance.PlayLoop(audioData.boosterLoopSFX);
+                GameManager.Instance.audioManager.PlayLoop(audioData.boosterLoopSFX);
             }
             else
             {
@@ -322,9 +322,9 @@ public class PlayerController : MonoBehaviour, IDamageAble
             Debug.Log(">>> [부스터 종료]");
 
             // BoosterEnd SFX
-            AudioManager.Instance.PlaySFX(audioData.boosterEndSFX);
+            GameManager.Instance.audioManager.PlaySFX(audioData.boosterEndSFX);
             // BoosterLoop 정지
-            AudioManager.Instance.StopLoop();
+            GameManager.Instance.audioManager.StopLoop();
 
             currentState = PlayerState.Normal;
             isBoosterActive = false;
