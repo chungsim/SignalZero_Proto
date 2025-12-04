@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance {  get { if (instance == null)instance = new GameManager();return instance; } }
 
-	public event Action Init;
+	//public event Action Init;
 
 	[Header("갖고있는 매니저")]
 	public UIManager uiManager;
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
 			monsterSpawnManager = FindObjectOfType<MonsterSpawnManager>();
 			
 			uiManager.characterUI.Init();
-			Init.Invoke();
+			
 		}
 		else if (scene.name == "Ui_Test_Scene")
 		{
