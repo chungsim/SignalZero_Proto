@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
 		{
 			instance = this;
 		}
+        bossHPObject.SetActive(false);
 	
     }
 
