@@ -241,7 +241,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  canvasRect: {fileID: 0}
+  uiRect: {fileID: 0}
   healthbarBlue: {fileID: 4331740411476163875}
   healthbarYellow: {fileID: 7975894666266899487}
-  healthCanvas: {fileID: 0}
+  offsetY: 1.5
   cam: {fileID: 0}

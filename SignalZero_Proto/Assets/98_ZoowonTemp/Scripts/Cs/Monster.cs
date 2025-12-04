@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Monster : MonoBehaviour, IDamageAble
 {
@@ -12,11 +13,12 @@ public class Monster : MonoBehaviour, IDamageAble
     public int maxHp;
     public int curHp;
 
+    [SerializeField] private Image hpGauge;
+
     [SerializeField] private MonsterState curState;
     private MonsterFsm monsterFsm;
     private bool isChasing = false;
 
-    //temp
     public Transform playerTransform;
 
     public LayerMask monsterLayer;
@@ -119,6 +121,7 @@ public class Monster : MonoBehaviour, IDamageAble
     public void GetDamage(int damage)
     {
         int result = curHp - damage;
+        UpdateHpGauge();
 
         if(curHp > 0)
         {
@@ -129,6 +132,14 @@ public class Monster : MonoBehaviour, IDamageAble
                 Die();
             }
         }  
+    }
+
+    private void UpdateHpGauge()
+    {
+        if(hpGauge != null)
+        {
+            hpGauge.fillAmount = (float)curHp / (float)maxHp;
+        }
     }
 
     private void Die()
