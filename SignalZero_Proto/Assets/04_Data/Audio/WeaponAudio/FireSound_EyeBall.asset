@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: FireSound_EyeBall
   m_EditorClassIdentifier: 
   fireSFX: {fileID: 8300000, guid: 2776f29f3e358ef4aa36134c603f8a53, type: 3}
+  fireVolume: 0.3
   impactSFX: {fileID: 8300000, guid: 3bfdd63cfe718b148965206c419ebefd, type: 3}
+  impactVolume: 0.3
