@@ -32,11 +32,25 @@ public class PlayerController : MonoBehaviour, IDamageAble
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
 
-        // AudioManager 찾기 (Instance 대신 FindObjectOfType 사용)
-        audioManager = FindObjectOfType<AudioManager>();
-        if (audioManager == null)
+        // AudioManager 찾기
+        // 1. GameManager를 통해 접근 시도
+        if (GameManager.Instance != null && GameManager.Instance.audioManager != null)
         {
-            Debug.LogWarning("[PlayerController] AudioManager를 찾을 수 없습니다!");
+            audioManager = GameManager.Instance.audioManager;
+            Debug.Log("[PlayerController] GameManager를 통해 AudioManager 참조 성공");
+        }
+        // 2. 씬에서 직접 찾기 (Fallback)
+        else
+        {
+            audioManager = FindObjectOfType<AudioManager>();
+            if (audioManager == null)
+            {
+                Debug.LogWarning("[PlayerController] AudioManager를 찾을 수 없습니다!");
+            }
+            else
+            {
+                Debug.Log("[PlayerController] 씬에서 AudioManager 찾기 성공");
+            }
         }
 
         // 입력 시스템

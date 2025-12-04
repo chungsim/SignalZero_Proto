@@ -69,19 +69,41 @@ public class GameManager : MonoBehaviour
 			monsterSpawnManager = FindObjectOfType<MonsterSpawnManager>();
 			audioManager = FindObjectOfType<AudioManager>();
 
+            // ========== 2. CharacterManager 초기화 (플레이어 생성) ==========
             if (characterManager != null)
             {
-                characterManager.FindAndRegisterPlayer();
-                Debug.Log("[GameManager] 플레이어 등록 완료!");
+                characterManager.Init();
+                Debug.Log("[GameManager] CharacterManager 초기화 완료!");
             }
             else
             {
                 Debug.LogError("[GameManager] CharacterManager를 찾을 수 없습니다!");
             }
 
-            uiManager.characterUI.Init();
-			
-		}
+            // ========== 3. CameraFollow 초기화 (플레이어 참조) ==========
+            CameraFollow cameraFollow = FindObjectOfType<CameraFollow>();
+            if (cameraFollow != null)
+            {
+                cameraFollow.Init();
+                Debug.Log("[GameManager] CameraFollow 초기화 완료!");
+            }
+            else
+            {
+                Debug.LogWarning("[GameManager] CameraFollow를 찾을 수 없습니다!");
+            }
+
+            // ========== 4. UI 초기화 ==========
+            if (uiManager != null)
+            {
+                uiManager.characterUI = FindObjectOfType<CharacterUI>();
+                if (uiManager.characterUI != null)
+                {
+                    uiManager.characterUI.Init();
+                    Debug.Log("[GameManager] CharacterUI 초기화 완료!");
+                }
+            }
+
+        }
 		else if (scene.name == "Ui_Test_Scene")
 		{
 			uiManager = FindObjectOfType<UIManager>();
