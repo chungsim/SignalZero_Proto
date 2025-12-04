@@ -75,7 +75,6 @@ public class GameManager : MonoBehaviour
 		{
 			characterManager = FindObjectOfType<CharacterManager>();
 			uiManager = FindObjectOfType<UIManager>();
-			uiManager.characterUI = FindObjectOfType<CharacterUI>();
 			fieldManager = FindObjectOfType<FieldManager>();
 			monsterSpawnManager = FindObjectOfType<MonsterSpawnManager>();
 			audioManager = FindObjectOfType<AudioManager>();
@@ -102,6 +101,8 @@ public class GameManager : MonoBehaviour
             {
                 Debug.LogWarning("[GameManager] CameraFollow를 찾을 수 없습니다!");
             }
+
+            uiManager.Init();
 
             // ========== 4. UI 초기화 ==========
             if (uiManager != null)

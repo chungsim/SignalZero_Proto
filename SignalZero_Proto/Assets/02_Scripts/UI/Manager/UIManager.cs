@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
 	public CharacterUI characterUI;
+	public Tutorial tutorial;
 
 	public Image bossHPBackground;
 	public Image bossHPBar;
@@ -26,10 +27,13 @@ public class UIManager : MonoBehaviour
 
 	}
 
-	// Update is called once per frame
-	void Update()
+	public void Init()
 	{
-
+		tutorial = FindObjectOfType<Tutorial>(true);
+		characterUI = FindObjectOfType<CharacterUI>(true);
+		characterUI.Init();
+		tutorial.Init();
+	
 	}
 
 }

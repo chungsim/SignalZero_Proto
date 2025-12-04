@@ -3810,7 +3810,7 @@ GameObject:
   - component: {fileID: 59820115856935215}
   - component: {fileID: 412434835587492069}
   m_Layer: 5
-  m_Name: UITMP
+  m_Name: SFXTMP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3863,7 +3863,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: UI
+  m_text: SFX
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dbd2071ddb1beee45969adcf417b65c1, type: 2}
   m_sharedMaterial: {fileID: -8216678918217792116, guid: dbd2071ddb1beee45969adcf417b65c1,
@@ -3943,7 +3943,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1363982183923225051}
   - component: {fileID: 3041285103217398922}
-  - component: {fileID: 7048363193652916051}
   m_Layer: 5
   m_Name: Mouse SensitivitySlide
   m_TagString: Untagged
@@ -4025,19 +4024,3 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7048363193652916051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8966879460629065611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 154efabd3454b0a409bfe1e53f52c18c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundSlider: {fileID: 3041285103217398922}
-  volume: {fileID: 3477889253774006355}
-  masterMixer: {fileID: 24100000, guid: 83293ed1f195ff84b99697bc0ff48e43, type: 2}
-  volumeType: 1
