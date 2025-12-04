@@ -1082,7 +1082,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiManager: {fileID: 0}
   fieldManager: {fileID: 0}
-  characterManager: {fileID: 0}
+  characterManager: {fileID: 5049117882087943152}
   monsterSpawnManager: {fileID: 0}
   audioManager: {fileID: 0}
 --- !u!1001 &1994564419781450819
@@ -1536,7 +1536,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca9fc029360bbb44d96a00d1986eca80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 8921682363690131374, guid: 29aa0cc2e98dc50478f4ad56ec85cdf8,
+    type: 3}
+  spawnPosition: {x: 0, y: 0, z: 0}
   playerInstance: {fileID: 0}
   playerTransform: {fileID: 0}
   playerController: {fileID: 0}

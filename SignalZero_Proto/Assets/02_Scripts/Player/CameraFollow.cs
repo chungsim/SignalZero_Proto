@@ -17,7 +17,6 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private float actionFov = 50f;
 
     [Header("전환 속도")]
-    //[SerializeField] private float paramLerpSpeed = 10f;
     [SerializeField] private float fovLerpSpeedIn = 15f;   // 줌 인 (FOV 감소)
     [SerializeField] private float fovLerpSpeedOut = 8f;   // 줌 아웃 (FOV 증가)
 
@@ -54,35 +53,43 @@ public class CameraFollow : MonoBehaviour
             cam.fieldOfView = currentFov;
         }
 
+        // 씬에 수동 배치된 플레이어가 있으면 감지
         if (target != null)
         {
             playerController = target.GetComponent<PlayerController>();
         }
     }
 
-    private void Start()
+    /// <summary>
+    /// GameManager에서 호출하는 초기화 메서드
+    /// CharacterManager로부터 플레이어 참조를 받음
+    /// </summary>
+    public void Init()
     {
-        // 플레이어가 프리팹으로 생성되어도 자동으로 잡는다.
-        if (target == null)
+        // 이미 타겟이 있으면 스킵
+        if (target != null)
         {
-            // GameManager를 통해 CharacterManager에 접근
-            if (GameManager.Instance != null && GameManager.Instance.characterManager != null)
+            Debug.Log("[CameraFollow] 타겟이 이미 설정되어 있습니다.");
+            return;
+        }
+
+        // GameManager를 통해 CharacterManager에 접근
+        if (GameManager.Instance != null && GameManager.Instance.characterManager != null)
+        {
+            target = GameManager.Instance.characterManager.GetPlayerTransform();
+            if (target != null)
             {
-                target = GameManager.Instance.characterManager.GetPlayerTransform();
-                if (target != null)
-                {
-                    playerController = target.GetComponent<PlayerController>();
-                    Debug.Log("[CameraFollow] 플레이어 자동 감지 완료");
-                }
-                else
-                {
-                    Debug.LogWarning("[CameraFollow] 플레이어를 찾을 수 없습니다");
-                }
+                playerController = target.GetComponent<PlayerController>();
+                Debug.Log("[CameraFollow] 플레이어 참조 초기화 완료");
             }
             else
             {
-                Debug.LogWarning("[CameraFollow] GameManager 또는 CharacterManager를 찾을 수 없습니다");
+                Debug.LogWarning("[CameraFollow] 플레이어를 찾을 수 없습니다!");
             }
+        }
+        else
+        {
+            Debug.LogWarning("[CameraFollow] GameManager 또는 CharacterManager를 찾을 수 없습니다!");
         }
     }
 
