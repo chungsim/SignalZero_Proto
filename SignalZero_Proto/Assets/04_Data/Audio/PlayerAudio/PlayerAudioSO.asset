@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boosterStartSFX: {fileID: 8300000, guid: a295b540c83335d499c8cdd6afa835e0, type: 3}
   boosterLoopSFX: {fileID: 8300000, guid: 280a838479692c049804893833d0f25a, type: 3}
-  boosterEndSFX: {fileID: 8300000, guid: c397f3d927a63f34c8dff2c0de101699, type: 3}
+  boosterEndSFX: {fileID: 8300000, guid: a295b540c83335d499c8cdd6afa835e0, type: 3}

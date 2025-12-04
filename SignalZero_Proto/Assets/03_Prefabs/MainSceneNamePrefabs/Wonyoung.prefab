@@ -517,9 +517,7 @@ MonoBehaviour:
   bgmSource: {fileID: 8846218685835380823}
   sfxSource: {fileID: 6928831305077862118}
   loopSource: {fileID: 7583715055545690405}
-  soundList:
-  - key: 
-    clip: {fileID: 0}
+  soundList: []
 --- !u!1 &6288287796874766865
 GameObject:
   m_ObjectHideFlags: 0
