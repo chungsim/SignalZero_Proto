@@ -367,6 +367,7 @@ MonoBehaviour:
   burstCooldownTimer: 0
   currentHp: 0
   isDead: 0
+  audioData: {fileID: 11400000, guid: 35572143372aef340b454c5a3910f1c3, type: 2}
 --- !u!114 &8572463628792576161
 MonoBehaviour:
   m_ObjectHideFlags: 0

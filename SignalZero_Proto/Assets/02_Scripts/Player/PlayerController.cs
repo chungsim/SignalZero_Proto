@@ -48,6 +48,10 @@ public class PlayerController : MonoBehaviour , IDamageAble
 
     private bool isFiring;
 
+    // 사운드 출력
+
+    [SerializeField] private PlayerAudioData audioData;
+
     private enum PlayerState
     {
         Normal,
@@ -214,6 +218,9 @@ public class PlayerController : MonoBehaviour , IDamageAble
     // === 버스트 딜레이 (감속) ===
     void UpdateBurstDelay()
     {
+        // BoosterStart SFX
+        AudioManager.Instance.PlaySFX(audioData.boosterStartSFX);
+
         burstDelayTimer -= Time.deltaTime;
 
         // 감속 이동
@@ -244,6 +251,9 @@ public class PlayerController : MonoBehaviour , IDamageAble
             Debug.Log(">>> [부스터 전환 성공]");
             currentState = PlayerState.Booster;
             isBoosterActive = true;
+
+            // BoosterLoop 시작
+            AudioManager.Instance.PlayLoop(audioData.boosterLoopSFX);
         }
         else
         {
@@ -270,6 +280,13 @@ public class PlayerController : MonoBehaviour , IDamageAble
         if (currentGauge <= 0 || !isDashing)
         {
             Debug.Log(">>> [부스터 종료]");
+
+            // BoosterLoop 정지
+            AudioManager.Instance.StopLoop();
+
+            // BoosterEnd SFX
+            AudioManager.Instance.PlaySFX(audioData.boosterEndSFX);
+
             currentState = PlayerState.Normal;
             isBoosterActive = false;
             burstCooldownTimer = combatStats.burstCool;
