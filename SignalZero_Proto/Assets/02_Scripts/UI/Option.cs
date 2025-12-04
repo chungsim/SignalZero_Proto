@@ -105,5 +105,5 @@ public class Option : MonoBehaviour
 		basePanel.SetActive(isOpen);
 	}
 
-	
+
 }
