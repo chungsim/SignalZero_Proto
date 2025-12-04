@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour , IDamageAble
 {
     [Header("스탯")]
     public PlayerMovementStats movementStats;  // 이동 관련 스탯
@@ -342,6 +342,10 @@ public class PlayerController : MonoBehaviour
 
     // ===== HP 시스템 =====
 
+    public void GetDamage(int damage)
+    {
+        TakeDamage((float)damage);
+    }
     // 플레이어가 데미지를 받음
     public void TakeDamage(float damage)
     {
