@@ -75,7 +75,7 @@ MonoBehaviour:
     curHp: 10
     moveSpeed: 8
     detectRange: 3000
-    attackRange: 0
+    attackRange: 2
     contactDps: 10
     monsterbehaviors: 0000000001000000
     spawnCoolTime: 0

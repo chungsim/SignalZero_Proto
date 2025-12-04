@@ -8,7 +8,7 @@ public class MonsterAttackState : MonsterBaseState
 {
     public MonsterAttackState(Monster monster) : base(monster){}
 
-    private LayerMask playerMask = LayerMask.GetMask("Water"); // 테스트 용
+    private LayerMask playerMask = LayerMask.GetMask("Player");
 
     private float nextAttackTime = 0f;
     private MonsterBehavior curBehavior;
@@ -24,7 +24,7 @@ public class MonsterAttackState : MonsterBaseState
     {
         if(curBehavior == MonsterBehavior.Spawn)
         {
-            SpawnMinion();
+            //SpawnMinion();
         }
         else
         {
@@ -44,9 +44,9 @@ public class MonsterAttackState : MonsterBaseState
         Ray ray = new Ray(_monster.transform.position, _monster.transform.forward);
         RaycastHit hitData;
             
-        if(Physics.Raycast(ray, out hitData, _monster.monsterData.attackRange))
+        if(Physics.Raycast(ray, out hitData, _monster.monsterData.attackRange, playerMask))
         {
-            Debug.Log(hitData.collider.name);
+            hitData.collider.GetComponent<PlayerController>().GetDamage(_monster.monsterData.contactDps);
             nextAttackTime = Time.time + 1f;
         }          
         

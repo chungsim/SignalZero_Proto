@@ -93,7 +93,7 @@ public class Monster : MonoBehaviour, IDamageAble
     // 플레이어가 공격범위에 들어 왔을 때
     private bool IsPlayerInAttackRange()
     {
-        if(Vector3.Distance(playerTransform.position, transform.position) <= monsterData.attackRange)
+        if(Vector3.Distance(playerTransform.position, transform.position) <= monsterData.attackRange && monsterData.monsterRole == MonsterRoles.Minion)
         {
             return true;
         }
@@ -138,6 +138,11 @@ public class Monster : MonoBehaviour, IDamageAble
         {
             GameManager.Instance.monsterSpawnManager.AddMidKillCount();
             GameManager.Instance.monsterSpawnManager.SpawnWeaponItem(transform.position);
+        }
+
+        if(monsterData.monsterRole == MonsterRoles.Minion)
+        {
+            GameManager.Instance.monsterSpawnManager.killMinion();
         }
 
         if(monsterData.monsterRole == MonsterRoles.Boss)
