@@ -120,6 +120,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterUI: {fileID: 0}
+  bossHPBackground: {fileID: 1670924541765312962}
+  bossHPBar: {fileID: 575198120310654352}
+  bossHPObject: {fileID: 6470918440290748852}
 --- !u!1 &5253861576315031673
 GameObject:
   m_ObjectHideFlags: 0
