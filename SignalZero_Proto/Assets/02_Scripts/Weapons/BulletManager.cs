@@ -27,7 +27,9 @@ public class BulletManager : MonoBehaviour
         {
             var clip = bulletData.audiodata.impactSFX;
             if (clip != null)
-                AudioManager.Instance.PlaySFX(clip);
+            {
+                GameManager.Instance.audioManager.PlayLimitedSFX(bulletData.audiodata.impactSFX, bulletData.audiodata.impactVolume);
+            }
 
             Debug.Log("총알 사운드");
         }

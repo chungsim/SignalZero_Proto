@@ -40,8 +40,12 @@ public class Weapon : MonoBehaviour
     {
         // 사운드
 
-        if (weaponData.audioData != null)
-            AudioManager.Instance.PlaySFX(weaponData.audioData.fireSFX);
+        // 발사 시 SFX 출력
+        GameManager.Instance.audioManager.PlaySFX(
+            weaponData.audioData.fireSFX,
+            weaponData.audioData.fireVolume
+        );
+
 
         // 탄환 생성
         for (int i = 0; i < weaponData.numPerShot; i++)

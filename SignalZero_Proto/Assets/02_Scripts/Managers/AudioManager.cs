@@ -5,8 +5,6 @@ using System;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance { get; private set; } //테스트용
-
     [Header("Audio Sources")]
     [SerializeField] private AudioSource bgmSource; // BGM 전용
     [SerializeField] private AudioSource sfxSource; // SFX 전용
@@ -19,14 +17,17 @@ public class AudioManager : MonoBehaviour
         public AudioClip clip;
     }
 
+    [Header("SFX 사운드 모음집(전역 SFX)")]
     [SerializeField] private List<SoundEntry> soundList = new List<SoundEntry>();
-
     private Dictionary<string, AudioClip> soundDict;
+
+    [Header("동일 SFX 재생간격 설정")]
+
+    private Dictionary<AudioClip, float> limitedSfxLastTime = new();
+    private float limitedCooldown = 0.05f;   // 동일 SFX 최소 재생 간격
 
     void Awake()
     {
-        Instance = this;  // 테스트용
-
         soundDict = new Dictionary<string, AudioClip>();
 
         foreach (var s in soundList)
@@ -37,16 +38,31 @@ public class AudioManager : MonoBehaviour
     //  SFX 재생
     // -----------------------------------------
 
-    public void PlaySFX(string key)
+    // -----------------------------------------
+    // 1) 즉시 출력 SFX (발사, 부스터 시작/끝)
+    // -----------------------------------------
+    public void PlaySFX(AudioClip clip, float volume = 1f)
     {
-       if(soundDict.TryGetValue(key, out var clip))
-            sfxSource.PlayOneShot(clip);
+        if (clip == null) return;
+        sfxSource.PlayOneShot(clip, volume);
     }
 
-    public void PlaySFX(AudioClip clip)
+    // -----------------------------------------
+    // 2) 제한 SFX (몬스터 피격처 중첩 사운드 방지)
+    // -----------------------------------------
+    public void PlayLimitedSFX(AudioClip clip, float volume = 1f)
     {
-        if(clip != null)
-            sfxSource.PlayOneShot(clip);
+        if (clip == null) return;
+
+        float last;
+        limitedSfxLastTime.TryGetValue(clip, out last);
+
+        if (Time.time - last < limitedCooldown)
+            return;
+
+        limitedSfxLastTime[clip] = Time.time;
+
+        sfxSource.PlayOneShot(clip, volume);
     }
 
     // -----------------------------------------
