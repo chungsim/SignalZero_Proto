@@ -15,7 +15,6 @@ public class UISoundCountroller : MonoBehaviour
 {
 	public Slider soundSlider;
 	public Image volume;
-	private float sliderValue;
 
 	public AudioMixer masterMixer;
 	public VolumeType volumeType;
@@ -37,14 +36,16 @@ public class UISoundCountroller : MonoBehaviour
 		switch (volumeType)
 		{
 			case VolumeType.Master:
-				float volume = Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20f;
-				masterMixer.SetFloat("MasterParameter", volume);
+				float Mvolume = Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20f;
+				masterMixer.SetFloat("MasterParameter", Mvolume);
 				break;
 			case VolumeType.BGM:
-				//GameManager.Instance.audioManager.bgmSource.volume = value;
+				float Bvolume = Mathf.Log10(Mathf.Clamp(value,0.001f,1f)) * 20f;
+				masterMixer.SetFloat("BGMParameter",Bvolume);
 				break;
 			case VolumeType.SFX:
-				//GameManager.Instance.audioManager.sfxSource.volume = value;
+				float Svolume = Mathf.Log10(Mathf.Clamp(value,0.001f,1f)) * 20f;
+				masterMixer.SetFloat("SFXParameter",Svolume);
 				break;
 			default:
 				break;
