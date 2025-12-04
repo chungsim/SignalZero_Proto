@@ -44,6 +44,14 @@ public class PlayerController : MonoBehaviour , IDamageAble
     public float currentHp;
     public bool isDead = false;
 
+    // 무기 발사
+
+    private bool isFiring;
+
+    // 사운드 출력
+
+    [SerializeField] private PlayerAudioData audioData;
+
     private enum PlayerState
     {
         Normal,
@@ -74,8 +82,7 @@ public class PlayerController : MonoBehaviour , IDamageAble
         inputActions.Player.MousePosition.performed += ctx =>
             mouseScreenPosition = ctx.ReadValue<Vector2>();
 
-        inputActions.Player.Attack.started += ctx =>
-        weaponManager.FireAllWeapons(); // 플레이어 Attack input을 WeaponManager에게 전달
+        inputActions.Player.Attack.started += _ => isFiring = true; // 플레이어 Attack input을 저장
 
         inputActions.Player.Dash.started += ctx => OnDashPressed();
         inputActions.Player.Dash.canceled += ctx => OnDashReleased();
@@ -113,6 +120,13 @@ public class PlayerController : MonoBehaviour , IDamageAble
                 UpdateBooster();
                 break;
         }
+
+        if (isFiring)
+        {
+            weaponManager.FireAllWeapons();
+            isFiring = false;
+        }
+            
     }
 
     void FixedUpdate()
@@ -204,6 +218,9 @@ public class PlayerController : MonoBehaviour , IDamageAble
     // === 버스트 딜레이 (감속) ===
     void UpdateBurstDelay()
     {
+        // BoosterStart SFX
+        AudioManager.Instance.PlaySFX(audioData.boosterStartSFX);
+
         burstDelayTimer -= Time.deltaTime;
 
         // 감속 이동
@@ -234,6 +251,9 @@ public class PlayerController : MonoBehaviour , IDamageAble
             Debug.Log(">>> [부스터 전환 성공]");
             currentState = PlayerState.Booster;
             isBoosterActive = true;
+
+            // BoosterLoop 시작
+            AudioManager.Instance.PlayLoop(audioData.boosterLoopSFX);
         }
         else
         {
@@ -260,6 +280,13 @@ public class PlayerController : MonoBehaviour , IDamageAble
         if (currentGauge <= 0 || !isDashing)
         {
             Debug.Log(">>> [부스터 종료]");
+
+            // BoosterLoop 정지
+            AudioManager.Instance.StopLoop();
+
+            // BoosterEnd SFX
+            AudioManager.Instance.PlaySFX(audioData.boosterEndSFX);
+
             currentState = PlayerState.Normal;
             isBoosterActive = false;
             burstCooldownTimer = combatStats.burstCool;

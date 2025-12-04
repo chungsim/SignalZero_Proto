@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Sources")]
     [SerializeField] private AudioSource bgmSource; // BGM 전용
     [SerializeField] private AudioSource sfxSource; // SFX 전용
+    [SerializeField] private AudioSource loopSource; // Loop 전용
 
     [Serializable]
     public class SoundEntry
@@ -74,4 +75,19 @@ public class AudioManager : MonoBehaviour
     }
 
 
+    // -----------------------------------------
+    //  Loop 사운드 관리
+    // -----------------------------------------
+
+    public void PlayLoop(AudioClip clip)
+    {
+        if (clip == null) return;
+        loopSource.clip = clip;
+        if (!loopSource.isPlaying) loopSource.Play();
+    }
+
+    public void StopLoop()
+    {
+        loopSource.Stop();
+    }
 }
