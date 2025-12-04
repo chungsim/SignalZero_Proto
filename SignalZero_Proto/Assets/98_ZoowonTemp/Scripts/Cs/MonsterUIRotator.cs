@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterUIRotator : MonoBehaviour
 {
     [SerializeField] private Canvas canvas;
-    private Camera camera;
+    private new Camera camera;
     Vector3 lookDirection;
 
     void Start()
