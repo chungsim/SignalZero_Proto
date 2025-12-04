@@ -46,6 +46,7 @@ public class MonsterMoveState : MonsterBaseState
             if(monsterBehavior == MonsterBehavior.Chase)
             {
                 Chase();
+                
                 if(_monster.monsterData.monsterRole == MonsterRoles.Boss)
                 {
                     SpawnMinion();
@@ -54,7 +55,7 @@ public class MonsterMoveState : MonsterBaseState
             else if (monsterBehavior == MonsterBehavior.Flee)
             {
                 Flee();
-                SpawnMinion();
+                SpawnDrone();
             }
             
             AvoidOtherMonsters();
@@ -82,9 +83,6 @@ public class MonsterMoveState : MonsterBaseState
         }
 
         LookAtPlayer();
-        
-        // Quaternion quaternion =  Quaternion.LookRotation(direction);
-        // _monster.transform.rotation = quaternion;
     }
     public void Flee()
     {
@@ -148,5 +146,13 @@ public class MonsterMoveState : MonsterBaseState
 
         GameManager.Instance.monsterSpawnManager.SpawnMinion(_monster.transform, 4);
         nextSpawnTime = Time.time + _monster.monsterData.spawnCoolTime;      
+    }
+
+    private void SpawnDrone()
+    {
+        if (Time.time < nextSpawnTime) return;
+
+        GameManager.Instance.monsterSpawnManager.SpawnMinion(_monster.transform, 4);
+        nextSpawnTime = Time.time + _monster.monsterData.spawnCoolTime;  
     }
 }

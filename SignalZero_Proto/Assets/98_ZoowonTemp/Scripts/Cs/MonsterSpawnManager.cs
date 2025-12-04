@@ -17,6 +17,8 @@ public class MonsterSpawnManager : MonoBehaviour
     [SerializeField] private int bossSpawnCount;
     [SerializeField] private int curMidKillCount;
     [SerializeField] private float bossSpawnDistance;
+    [SerializeField] private int maxMinionNum;
+    [SerializeField] private int curMinionNum;
 
     [Header("Drop")]
     [SerializeField] private GameObject[] dropItems;
@@ -66,10 +68,34 @@ public class MonsterSpawnManager : MonoBehaviour
 
         for(int i = 0; i < num; i++)
         {
+            // 미니언 최대 수 도달 시 스폰 정지
+            if(curMinionNum > maxMinionNum) return;
+
             Vector3 spawnPos = bossTransform.position + bossTransform.forward * -UnityEngine.Random.Range(10, 30) + bossTransform.right * UnityEngine.Random.Range(-20  , 20) ;
             GameObject go = Instantiate(monsterSpawnDatas[3].monsterPosPairs[0].monsterPrefab, transform);
             go. transform.position = spawnPos;
+            curMinionNum++;
         }  
+    }
+
+    public void SpawnDrone(int num)
+    {
+        Transform playerTransform = GameManager.Instance.characterManager.GetPlayerTransform();
+        for(int i = 0; i < num; i++)
+        {
+            // 미니언 최대 수 도달 시 스폰 정지
+            if(curMinionNum > maxMinionNum) return;
+
+            Vector3 spawnPos = playerTransform.position + playerTransform.forward * -UnityEngine.Random.Range(-30, 30) + playerTransform.right * UnityEngine.Random.Range(-30  , 30) ;
+            GameObject go = Instantiate(monsterSpawnDatas[0].monsterPosPairs[0].monsterPrefab, transform);
+            go. transform.position = spawnPos;
+            curMinionNum++;
+        }  
+    }
+
+    public void killMinion()
+    {
+        curMinionNum--;
     }
 
     public void SpawnBoss()
@@ -97,7 +123,7 @@ public class MonsterSpawnManager : MonoBehaviour
     {
         curMidKillCount++;
 
-        if(curMidKillCount >= bossSpawnCount)
+        if(curMidKillCount == bossSpawnCount)
         {
             SpawnBoss();
         }

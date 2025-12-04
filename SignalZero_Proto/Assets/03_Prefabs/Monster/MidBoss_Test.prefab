@@ -78,6 +78,8 @@ MonoBehaviour:
     attackRange: 0
     contactDps: 0
     monsterbehaviors: 0200000000000000
+    spawnCoolTime: 10
+    boss: {fileID: 0}
   maxHp: 0
   curHp: 0
   curState: 2
