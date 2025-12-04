@@ -112,8 +112,9 @@ public class MonsterSpawnManager : MonoBehaviour
 
     private void ActiveBossHp()
     {
-        GameManager.Instance.uiManager.bossHPBar.gameObject.SetActive(true);
-        GameManager.Instance.uiManager.bossHPBackground.gameObject.SetActive(true);
+        // GameManager.Instance.uiManager.bossHPBar.gameObject.SetActive(true);
+        // GameManager.Instance.uiManager.bossHPBackground.gameObject.SetActive(true);
+        GameManager.Instance.uiManager.bossHPObject.SetActive(true);
     }
 
     private void DeactiveBossHp()
