@@ -20,23 +20,34 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
-	//public event Action Init;
+    //public event Action Init;
 
-	[Header("갖고있는 매니저")]
-	public UIManager uiManager;
-	public FieldManager fieldManager;
-	public CharacterManager characterManager;
-	public MonsterSpawnManager monsterSpawnManager;
-	public AudioManager audioManager;
+    [Header("전역 매니저(DontDestroyOnLoad)")]
+    [SerializeField] private AudioManager audioManagerPrefab;
+    public AudioManager audioManager;
 
-	private void Awake()
+    [Header("씬 매니저(MainScene 전용)")]
+    public UIManager uiManager;
+    public FieldManager fieldManager;
+    public CharacterManager characterManager;
+    public MonsterSpawnManager monsterSpawnManager;
+
+
+    private void Awake()
 	{
 		if(Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
 			SceneManager.sceneLoaded += OnSceneLoaded;
-		}
+
+            // 1) AudioManager DDOL 생성
+            if (audioManagerPrefab != null && audioManager == null)
+            {
+                audioManager = Instantiate(audioManagerPrefab);
+                DontDestroyOnLoad(audioManager.gameObject);
+            }
+        }
         else
         {
             Destroy(gameObject);
