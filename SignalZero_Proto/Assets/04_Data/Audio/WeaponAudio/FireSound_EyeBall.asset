@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3159026234cf3d449e7cd0f7b95d19b, type: 3}
   m_Name: FireSound_EyeBall
   m_EditorClassIdentifier: 
-  fireSFX: {fileID: 8300000, guid: 220bda90ec6861d4c81ab731825c6bf2, type: 3}
-  impactSFX: {fileID: 8300000, guid: fd0c0d79bba2246498557f0dff0767c4, type: 3}
+  fireSFX: {fileID: 8300000, guid: 2776f29f3e358ef4aa36134c603f8a53, type: 3}
+  impactSFX: {fileID: 8300000, guid: 3bfdd63cfe718b148965206c419ebefd, type: 3}

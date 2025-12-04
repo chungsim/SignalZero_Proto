@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour , IDamageAble
     private bool burstRequested = false;
     private float burstDelayTimer = 0f;
     private Vector3 burstDirection;
+    private Vector3 burstStartPosition;      // 버스트 시작 위치
+    private float burstTraveledDistance = 0f; // 버스트 이동 거리
 
     // 부스터
     private bool isBoosterActive = false;
@@ -218,8 +220,7 @@ public class PlayerController : MonoBehaviour , IDamageAble
     // === 버스트 딜레이 (감속) ===
     void UpdateBurstDelay()
     {
-        // BoosterStart SFX
-        AudioManager.Instance.PlaySFX(audioData.boosterStartSFX);
+        
 
         burstDelayTimer -= Time.deltaTime;
 
@@ -238,9 +239,15 @@ public class PlayerController : MonoBehaviour , IDamageAble
     // === 버스트 대쉬 실행 ===
     void PerformBurstDash()
     {
-        // 순간 이동
-        Vector3 targetPosition = transform.position + burstDirection * combatStats.burstRange;
-        transform.position = targetPosition;
+        /* 기존의 순간 이동 로직 삭제
+         *Vector3 targetPosition = transform.position + burstDirection * combatStats.burstRange;
+         *transform.position = targetPosition; 
+         *         
+         */
+
+        // 버스트 대쉬 초기화
+        burstStartPosition = transform.position;
+        burstTraveledDistance = 0f;
 
         // 쿨타임 시작
         burstCooldownTimer = combatStats.burstCool;
@@ -252,6 +259,8 @@ public class PlayerController : MonoBehaviour , IDamageAble
             currentState = PlayerState.Booster;
             isBoosterActive = true;
 
+            // BoosterStart SFX
+            AudioManager.Instance.PlaySFX(audioData.boosterStartSFX);
             // BoosterLoop 시작
             AudioManager.Instance.PlayLoop(audioData.boosterLoopSFX);
         }
@@ -266,7 +275,34 @@ public class PlayerController : MonoBehaviour , IDamageAble
     // === 버스트 대쉬 업데이트 ===
     void UpdateBurstDash()
     {
-        
+        // 버스트 속도: 부스터보다 4배 빠름 (약 96f/s)
+        float burstSpeed = combatStats.boosterSpeed * 4f;
+
+        // 매우 빠른 속도로 이동
+        moveDirection = burstDirection;
+        currentSpeed = burstSpeed;
+
+        // 이동 거리 누적
+        float frameDistance = burstSpeed * Time.deltaTime;
+        burstTraveledDistance += frameDistance;
+
+        // 목표 거리에 도달했는지 체크
+        if (burstTraveledDistance >= combatStats.burstRange)
+        {
+            // 우클릭 누르고 있으면 부스터로, 아니면 일반으로
+            if (isDashing && currentGauge > 0)
+            {
+                Debug.Log(">>> [부스터 전환 성공]");
+                currentState = PlayerState.Booster;
+                isBoosterActive = true;
+            }
+            else
+            {
+                Debug.Log($">>> [부스터 전환 실패] isDashing: {isDashing}, 게이지: {currentGauge:F1}");
+                currentState = PlayerState.Normal;
+                isDashing = false;
+            }
+        }
     }
 
     // === 부스터 ===
@@ -281,11 +317,10 @@ public class PlayerController : MonoBehaviour , IDamageAble
         {
             Debug.Log(">>> [부스터 종료]");
 
-            // BoosterLoop 정지
-            AudioManager.Instance.StopLoop();
-
             // BoosterEnd SFX
             AudioManager.Instance.PlaySFX(audioData.boosterEndSFX);
+            // BoosterLoop 정지
+            AudioManager.Instance.StopLoop();
 
             currentState = PlayerState.Normal;
             isBoosterActive = false;
