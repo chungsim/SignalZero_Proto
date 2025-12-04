@@ -11,7 +11,7 @@ public enum VolumeType
 	BGM,
 	SFX
 }
-public class UISoundCountroller : MonoBehaviour
+public class UISoundController : MonoBehaviour
 {
 	public Slider soundSlider;
 	public Image volume;
