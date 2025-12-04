@@ -526,7 +526,6 @@ MonoBehaviour:
   normalFov: 60
   actionMaxLagDistance: 8
   actionFov: 50
-  paramLerpSpeed: 10
   fovLerpSpeedIn: 15
   fovLerpSpeedOut: 8
   directionOffsetAmount: 2
@@ -953,6 +952,16 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1149350701}
+    - target: {fileID: 4464083080046730730, guid: 71691eff40de6514da521845774f9afe,
+        type: 3}
+      propertyPath: m_Direction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931063084503564484, guid: 71691eff40de6514da521845774f9afe,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5000753418194109664, guid: 71691eff40de6514da521845774f9afe,
         type: 3}
       propertyPath: playerInstance
