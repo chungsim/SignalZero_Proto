@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     private static GameManager instance;
 
-    public static GameManager Instance {  get { if (instance == null)instance = new GameManager();return instance; } }
+    public static GameManager Instance { get; private set; }
 
 	//public event Action Init;
 
@@ -27,21 +27,21 @@ public class GameManager : MonoBehaviour
 	public FieldManager fieldManager;
 	public CharacterManager characterManager;
 	public MonsterSpawnManager monsterSpawnManager;
+	public AudioManager audioManager;
 
 	private void Awake()
 	{
-		if(instance == null)
+		if(Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
-        }
+			SceneManager.sceneLoaded += OnSceneLoaded;
+		}
         else
         {
             Destroy(gameObject);
+			return;
         }
-
-		
-		SceneManager.sceneLoaded += OnSceneLoaded;
 	}
 
 	// Start is called before the first frame update
@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
 			uiManager.characterUI = FindObjectOfType<CharacterUI>();
 			fieldManager = FindObjectOfType<FieldManager>();
 			monsterSpawnManager = FindObjectOfType<MonsterSpawnManager>();
+			audioManager = FindObjectOfType<AudioManager>();
 
             if (characterManager != null)
             {

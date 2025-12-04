@@ -10,7 +10,7 @@ enum OptionType
 }
 public class Option : MonoBehaviour
 {
-	public RectTransform optionRect;
+	[SerializeField] private RectTransform optionRect;
 
 	public Button sound;
 	public Button graphics;
@@ -46,17 +46,12 @@ public class Option : MonoBehaviour
 		basePanel.SetActive(false);
 	}
 
-	// Update is called once per frame
-	void Update()
-	{
-	}
-
 	void OpenPanel()
 	{
 		optionRect.DOKill();
 		optionRect.DOAnchorPos(movePosition, moveDuration);
 		isOpen = true;
-		basePanel.SetActive(true);
+		UpdatePanels();
 	}
 
 	void ClosePanel()
@@ -65,24 +60,20 @@ public class Option : MonoBehaviour
 		optionRect.DOAnchorPos(originalPosition, moveDuration);
 		isOpen = false;
 		currentOption = OptionType.None;
-		basePanel.SetActive(false);
+		UpdatePanels();
 	}
 
 	void ClickSound()
 	{
 		HandleOptionClick(OptionType.Sound);
-		HandleOptionPanel();
 	}
 	void ClickGraphics()
 	{
 		HandleOptionClick(OptionType.Graphics);
-		HandleOptionPanel();
-
 	}
 	void ClickControl()
 	{
 		HandleOptionClick(OptionType.Control);
-		HandleOptionPanel();
 	}
 
 	void HandleOptionClick(OptionType clicked)
@@ -101,47 +92,18 @@ public class Option : MonoBehaviour
 		else
 		{
 			currentOption = clicked;
+			UpdatePanels();
 		}
 	}
 
-	void HandleOptionPanel()
+	void UpdatePanels()
 	{
-		switch (currentOption)
-		{
-			case OptionType.None:
-				break;
-				case OptionType.Sound:
-				if(isOpen == true)
-				{
-					soundPanel.SetActive(true);
-				}
-				else if(isOpen == false)
-				{
-					soundPanel.SetActive(false);
-				}
-					break;
-				case OptionType.Graphics:
-				if (isOpen == true)
-				{
-					graphicsPanel.SetActive(true);
-				}
-				else if (isOpen == false)
-				{
-					graphicsPanel.SetActive(false);
-				}
-				break;
-				case OptionType.Control:
-				if (isOpen == true)
-				{
-					controlPanel.SetActive(true);
-				}
-				else if (isOpen == false)
-				{
-					controlPanel.SetActive(false);
-				}
-				break;
-			default:
-				break;
-		}
+		soundPanel.SetActive(isOpen && currentOption == OptionType.Sound);
+		graphicsPanel.SetActive(isOpen && currentOption == OptionType.Graphics);
+		controlPanel.SetActive(isOpen && currentOption == OptionType.Control);
+
+		basePanel.SetActive(isOpen);
 	}
+
+	
 }
