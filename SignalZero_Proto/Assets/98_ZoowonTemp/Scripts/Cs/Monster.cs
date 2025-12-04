@@ -160,9 +160,11 @@ public class Monster : MonoBehaviour, IDamageAble
             GameManager.Instance.monsterSpawnManager.killMinion();
         }
 
+        // 보스 사망 시 처리
         if(monsterData.monsterRole == MonsterRoles.Boss)
         {
-            // 게임 메니저의 게임 종료 연결
+            GameManager.Instance.monsterSpawnManager.GameEnd(true);
+            // GameManager.Instance.uiManager.GameEnd(true); >> ui매니저로 옮기고 나서
         }
         
         Destroy(gameObject);
