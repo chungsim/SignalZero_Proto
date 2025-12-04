@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 2297227198179607306}
-  playerInstance: {fileID: 2297227198179607306}
+  playerInstance: {fileID: 0}
   playerTransform: {fileID: 0}
   playerController: {fileID: 0}
 --- !u!1 &1243388725252883734
@@ -914,12 +914,12 @@ PrefabInstance:
     - target: {fileID: 1070629421776332361, guid: d2087a075530fb14ba0b5144e047c77e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8
+      value: -33.8
       objectReference: {fileID: 0}
     - target: {fileID: 1070629421776332361, guid: d2087a075530fb14ba0b5144e047c77e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 62
+      value: 79.77
       objectReference: {fileID: 0}
     - target: {fileID: 1070629421776332361, guid: d2087a075530fb14ba0b5144e047c77e,
         type: 3}
