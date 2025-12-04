@@ -60,6 +60,32 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        // 플레이어가 프리팹으로 생성되어도 자동으로 잡는다.
+        if (target == null)
+        {
+            // GameManager를 통해 CharacterManager에 접근
+            if (GameManager.Instance != null && GameManager.Instance.characterManager != null)
+            {
+                target = GameManager.Instance.characterManager.GetPlayerTransform();
+                if (target != null)
+                {
+                    playerController = target.GetComponent<PlayerController>();
+                    Debug.Log("[CameraFollow] 플레이어 자동 감지 완료");
+                }
+                else
+                {
+                    Debug.LogWarning("[CameraFollow] 플레이어를 찾을 수 없습니다");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("[CameraFollow] GameManager 또는 CharacterManager를 찾을 수 없습니다");
+            }
+        }
+    }
+
     private void LateUpdate()
     {
         if (target == null) return;
