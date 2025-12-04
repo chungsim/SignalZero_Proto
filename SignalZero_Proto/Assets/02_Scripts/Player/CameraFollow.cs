@@ -17,7 +17,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private float actionFov = 50f;
 
     [Header("전환 속도")]
-    [SerializeField] private float paramLerpSpeed = 10f;
+    //[SerializeField] private float paramLerpSpeed = 10f;
     [SerializeField] private float fovLerpSpeedIn = 15f;   // 줌 인 (FOV 감소)
     [SerializeField] private float fovLerpSpeedOut = 8f;   // 줌 아웃 (FOV 증가)
 
