@@ -15,6 +15,10 @@ public class CharacterManager : MonoBehaviour
     [Tooltip("씬에 생성할 플레이어 프리팹")]
     [SerializeField] private GameObject playerPrefab;
 
+    [Header("플레이어 스폰 위치")]
+    [Tooltip("플레이어 프리팹 생성 시 초기 위치")]
+    [SerializeField] private Vector3 spawnPosition = Vector3.zero;
+
     [Header("플레이어 인스턴스")]
     [Tooltip("현재 씬의 플레이어 오브젝트")]
     [SerializeField] private GameObject playerInstance;
@@ -23,10 +27,34 @@ public class CharacterManager : MonoBehaviour
     public PlayerController playerController;
 
     // ========== 초기화 ==========
-    // Awake는 더 이상 싱글톤 설정 안 함
     private void Awake()
     {
         // 싱글톤 코드 제거됨
+    }
+
+    private void Start()
+    {
+        // 플레이어가 아직 없으면 자동 생성 시도
+        if (playerInstance == null)
+        {
+            // 1. 먼저 씬에 있는 플레이어 찾기 (수동 배치된 경우)
+            PlayerController foundPlayer = FindObjectOfType<PlayerController>();
+            if (foundPlayer != null)
+            {
+                RegisterPlayer(foundPlayer.gameObject);
+                Debug.Log("[CharacterManager] 씬에서 플레이어를 찾아 등록했습니다.");
+            }
+            // 2. 씬에 없으면 프리팹으로 자동 생성
+            else if (playerPrefab != null)
+            {
+                SpawnPlayer(spawnPosition, Quaternion.identity);
+                Debug.Log("[CharacterManager] 프리팹으로 플레이어를 자동 생성했습니다.");
+            }
+            else
+            {
+                Debug.LogError("[CharacterManager] 플레이어 프리팹이 설정되지 않았고 씬에도 플레이어가 없습니다!");
+            }
+        }
     }
 
     // ========== Public API - 플레이어 Transform 제공 ==========
@@ -118,6 +146,7 @@ public class CharacterManager : MonoBehaviour
 
     /// <summary>
     /// 씬에서 플레이어를 자동으로 찾아서 등록
+    /// (GameManager에서 호출용 - 하위 호환성 유지)
     /// </summary>
     public void FindAndRegisterPlayer()
     {
