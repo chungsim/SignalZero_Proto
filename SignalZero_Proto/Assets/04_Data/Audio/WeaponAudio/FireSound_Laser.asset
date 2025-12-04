@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: FireSound_Laser
   m_EditorClassIdentifier: 
   fireSFX: {fileID: 8300000, guid: b7dcb04e16e881947a8217874977bc8a, type: 3}
+  fireVolume: 0.3
   impactSFX: {fileID: 8300000, guid: 3bfdd63cfe718b148965206c419ebefd, type: 3}
+  impactVolume: 0.3
