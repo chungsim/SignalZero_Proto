@@ -46,7 +46,7 @@ public class MonsterAttackState : MonsterBaseState
             
         if(Physics.Raycast(ray, out hitData, _monster.monsterData.attackRange, playerMask))
         {
-            Debug.Log(hitData.collider.name);
+            hitData.collider.GetComponent<PlayerController>().GetDamage(_monster.monsterData.contactDps);
             nextAttackTime = Time.time + 1f;
         }          
         
