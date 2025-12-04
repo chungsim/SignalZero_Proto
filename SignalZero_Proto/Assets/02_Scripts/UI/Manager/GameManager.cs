@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
             }
 
             uiManager.characterUI.Init();
-			Init.Invoke();
+			
 		}
 		else if (scene.name == "Ui_Test_Scene")
 		{
