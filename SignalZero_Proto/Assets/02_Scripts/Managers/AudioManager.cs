@@ -6,9 +6,9 @@ using System;
 public class AudioManager : MonoBehaviour
 {
     [Header("Audio Sources")]
-    [SerializeField] private AudioSource bgmSource; // BGM 전용
-    [SerializeField] private AudioSource sfxSource; // SFX 전용
-    [SerializeField] private AudioSource loopSource; // Loop 전용
+    [SerializeField] public AudioSource bgmSource; // BGM 전용
+    [SerializeField] public AudioSource sfxSource; // SFX 전용
+    [SerializeField] public AudioSource loopSource; // Loop 전용
 
     [Serializable]
     public class SoundEntry

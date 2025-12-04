@@ -4,9 +4,23 @@ public class BulletManager : MonoBehaviour
 {
     public static BulletManager Instance;
 
+    private AudioManager audioManager;
     private void Awake()
     {
         Instance = this;
+        
+    }
+
+    // -----------------------------------------
+    //  Lazy 방식으로 혹시 모를 Null 방지
+    // -----------------------------------------
+    private void EnsureAudioManager()
+    {
+        if (audioManager == null)
+        {
+            if (GameManager.Instance != null)
+                audioManager = GameManager.Instance.audioManager;
+        }
     }
 
     // FX 묶음 실행 함수
@@ -19,19 +33,16 @@ public class BulletManager : MonoBehaviour
     // 총알 충돌 시 FX/SFX 실행
     public void OnBulletImpact(Vector3 pos, BulletSO bulletData)
     {
-        // 1) 충돌 FX (구현 예정)
+        EnsureAudioManager();
+
         CreateImpactFX(pos, bulletData);
 
-        // 2) 충돌 사운드 (ImpactSFX)
-        if (bulletData != null && bulletData.audiodata != null)
+        if (bulletData?.audiodata?.impactSFX != null)
         {
-            var clip = bulletData.audiodata.impactSFX;
-            if (clip != null)
-            {
-                GameManager.Instance.audioManager.PlayLimitedSFX(bulletData.audiodata.impactSFX, bulletData.audiodata.impactVolume);
-            }
-
-            Debug.Log("총알 사운드");
+            audioManager?.PlayLimitedSFX(
+                bulletData.audiodata.impactSFX,
+                bulletData.audiodata.impactVolume
+            );
         }
     }
 

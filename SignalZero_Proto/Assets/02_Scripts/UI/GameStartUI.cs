@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 
-public class GameStart : MonoBehaviour
+public class GameStartUI : MonoBehaviour
 {
     public GameObject buttonObject;
     public Option optionObject;
@@ -38,7 +38,7 @@ public class GameStart : MonoBehaviour
     public void StartGame()
     {
         buttonObject.SetActive(false);
-        SceneManager.LoadScene("Ui_Test_Scene");
+        SceneManager.LoadScene("MainScene");
     }
 
     public void Option()
