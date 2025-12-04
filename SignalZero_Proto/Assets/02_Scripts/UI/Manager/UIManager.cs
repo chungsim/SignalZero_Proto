@@ -13,27 +13,18 @@ public class UIManager : MonoBehaviour
 	public Image bossHPBar;
 	public GameObject bossHPObject;
 
-
-	private static UIManager instance;
-	public static UIManager Instance { get { return instance; } }
-	// Start is called before the first frame update
 	void Start()
 	{
-		if (instance == null)
-		{
-			instance = this;
-		}
-		bossHPObject.SetActive(false);
-
-	}
+        bossHPObject.SetActive(false);
+    }
 
 	public void Init()
 	{
-		tutorial = FindObjectOfType<Tutorial>(true);
-		characterUI = FindObjectOfType<CharacterUI>(true);
-		characterUI.Init();
-		tutorial.Init();
-	
-	}
+        if (tutorial != null)
+            tutorial.Init();
+
+        if (characterUI != null)
+            characterUI.Init();
+    }
 
 }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9199705232843311750
+--- !u!1 &2604094240441842119
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8812694149881626133}
-  - component: {fileID: 2092256552119775394}
+  - component: {fileID: 5854557410799994838}
+  - component: {fileID: 8901763299564099385}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Bootstrapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8812694149881626133
+--- !u!4 &5854557410799994838
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9199705232843311750}
+  m_GameObject: {fileID: 2604094240441842119}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2092256552119775394
+--- !u!114 &8901763299564099385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9199705232843311750}
+  m_GameObject: {fileID: 2604094240441842119}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 565d4935c9a6e0a47ac052a1acf4a6e2, type: 3}
+  m_Script: {fileID: 11500000, guid: c3aac6ca4b222234a92bd95612f31432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioManagerPrefab: {fileID: 1590549228391863972, guid: 9c8dfd85008f8d84fad81ecea43a9c8f,
+  gameManagerPrefab: {fileID: 2092256552119775394, guid: 58ec34a17780bb14f83133f0bd29f433,
     type: 3}
-  audioManager: {fileID: 0}
-  uiManager: {fileID: 0}
-  fieldManager: {fileID: 0}
-  characterManager: {fileID: 0}
-  monsterSpawnManager: {fileID: 0}

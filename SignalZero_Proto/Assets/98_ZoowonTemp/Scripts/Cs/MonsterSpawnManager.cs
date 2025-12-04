@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +23,10 @@ public class MonsterSpawnManager : MonoBehaviour
     [Header("Drop")]
     [SerializeField] private GameObject[] dropItems;
 
+    void Awake()
+    {
+        GameManager.Instance.monsterSpawnManager = this;
+    }
     void Start()
     {
         visitedFields.Clear();

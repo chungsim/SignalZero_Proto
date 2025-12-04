@@ -35,36 +35,30 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
 	{
-		if(Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-			SceneManager.sceneLoaded += OnSceneLoaded;
-
-            // 1) AudioManager DDOL 생성
-            if (audioManagerPrefab != null && audioManager == null)
-            {
-                audioManager = Instantiate(audioManagerPrefab);
-                DontDestroyOnLoad(audioManager.gameObject);
-            }
-        }
-        else
+        if (Instance != null)
         {
             Destroy(gameObject);
-			return;
+            return;
         }
-	}
 
-	// Start is called before the first frame update
-	void Start()
-    {
-        
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        // 전역 오디오 매니저 생성
+        EnsureAudioManager();
+
+        // 씬 로드 이벤트 연결
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    // Update is called once per frame
-    void Update()
+    // DDOL 오디오 매니저가 없으면 생성
+    private void EnsureAudioManager()
     {
-        
+        if (audioManager == null)
+        {
+            audioManager = Instantiate(audioManagerPrefab);
+            DontDestroyOnLoad(audioManager.gameObject);
+        }
     }
 
 	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -73,17 +67,27 @@ public class GameManager : MonoBehaviour
 
 		if (scene.name == "MainScene")
 		{
-			characterManager = FindObjectOfType<CharacterManager>();
-			uiManager = FindObjectOfType<UIManager>();
-			fieldManager = FindObjectOfType<FieldManager>();
-			monsterSpawnManager = FindObjectOfType<MonsterSpawnManager>();
-			audioManager = FindObjectOfType<AudioManager>();
+            // 1) SceneManager 오브젝트 단 한 번만 찾기
+            GameObject sceneManagerObj = GameObject.Find("SceneManager");
+            if (sceneManagerObj == null)
+            {
+                Debug.LogError("[GameManager] SceneManager 오브젝트를 찾을 수 없습니다!");
+                return;
+            }
+
+            // 2) 모든 매니저를 SceneManager 하위에서 GetComponent로 가져오기
+            characterManager = sceneManagerObj.GetComponentInChildren<CharacterManager>();
+            uiManager = sceneManagerObj.GetComponentInChildren<UIManager>();
+            fieldManager = sceneManagerObj.GetComponentInChildren<FieldManager>();
+            monsterSpawnManager = sceneManagerObj.GetComponentInChildren<MonsterSpawnManager>();
 
             // ========== 2. CharacterManager 초기화 (플레이어 생성) ==========
             if (characterManager != null)
             {
                 characterManager.Init();
                 Debug.Log("[GameManager] CharacterManager 초기화 완료!");
+                var playerTr = characterManager.GetPlayerTransform();
+                uiManager.characterUI = playerTr.GetComponentInChildren<CharacterUI>(true);
             }
             else
             {
@@ -102,31 +106,14 @@ public class GameManager : MonoBehaviour
                 Debug.LogWarning("[GameManager] CameraFollow를 찾을 수 없습니다!");
             }
 
-            uiManager.Init();
+            Debug.Log("[GameManager] UIManager 초기화 완료!");
 
-            // ========== 4. UI 초기화 ==========
             if (uiManager != null)
             {
-                uiManager.characterUI = FindObjectOfType<CharacterUI>();
-                if (uiManager.characterUI != null)
-                {
-                    uiManager.characterUI.Init();
-                    Debug.Log("[GameManager] CharacterUI 초기화 완료!");
-                }
+                uiManager.Init(); ;
             }
 
         }
-		else if (scene.name == "Ui_Test_Scene")
-		{
-			uiManager = FindObjectOfType<UIManager>();
-			uiManager.characterUI = FindObjectOfType<CharacterUI>();
-			fieldManager = FindObjectOfType<FieldManager>();
-		}
-		else if (scene.name == "EndingScene")
-		{
-			// 엔딩씬 전용 로직
-			Debug.Log("엔딩씬 전용 로직 실행!");
-		}
 	}
 	
 	void GameStart()
