@@ -28,14 +28,6 @@ public class MonsterSpawnManager : MonoBehaviour
         visitedFields.Clear();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            SpawnBoss();
-        }
-    }
-
     public bool AddField(Field curField)
     {
         // 처음 방문한 필드이면 리스트에 적재, 현재 필드 업데이트
@@ -113,10 +105,21 @@ public class MonsterSpawnManager : MonoBehaviour
         
         GameObject go = Instantiate(monsterSpawnDatas[2].monsterPosPairs[0].monsterPrefab, transform);
         go.transform.position = randField.transform.position;
+        ActiveBossHp();
 
-        // 필드 메니저에서 
-        
-        
+        // 필드 메니저에서     
+    }
+
+    private void ActiveBossHp()
+    {
+        GameManager.Instance.uiManager.bossHPBar.gameObject.SetActive(true);
+        GameManager.Instance.uiManager.bossHPBackground.gameObject.SetActive(true);
+    }
+
+    private void DeactiveBossHp()
+    {
+        GameManager.Instance.uiManager.bossHPBar.gameObject.SetActive(false);
+        GameManager.Instance.uiManager.bossHPBackground.gameObject.SetActive(false);
     }
 
     public void AddMidKillCount()
