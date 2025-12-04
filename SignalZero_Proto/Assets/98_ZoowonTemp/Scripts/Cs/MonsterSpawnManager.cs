@@ -86,8 +86,8 @@ public class MonsterSpawnManager : MonoBehaviour
             // 미니언 최대 수 도달 시 스폰 정지
             if(curMinionNum > maxMinionNum) return;
 
-            Vector3 spawnPos = playerTransform.position + playerTransform.forward * -UnityEngine.Random.Range(-30, 30) + playerTransform.right * UnityEngine.Random.Range(-30  , 30) ;
-            GameObject go = Instantiate(monsterSpawnDatas[0].monsterPosPairs[0].monsterPrefab, transform);
+            Vector3 spawnPos = playerTransform.position + playerTransform.forward * -UnityEngine.Random.Range(-50 , 50) + playerTransform.right * UnityEngine.Random.Range(-50  , 50) ;
+            GameObject go = Instantiate(monsterSpawnDatas[1].monsterPosPairs[0].monsterPrefab, transform);
             go. transform.position = spawnPos;
             curMinionNum++;
         }  

@@ -152,7 +152,7 @@ public class MonsterMoveState : MonsterBaseState
     {
         if (Time.time < nextSpawnTime) return;
 
-        GameManager.Instance.monsterSpawnManager.SpawnMinion(_monster.transform, 4);
+        GameManager.Instance.monsterSpawnManager.SpawnDrone(4);
         nextSpawnTime = Time.time + _monster.monsterData.spawnCoolTime;  
     }
 }

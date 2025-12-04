@@ -74,12 +74,15 @@ MonoBehaviour:
     maxHp: 20
     curHp: 20
     moveSpeed: 8
-    detectRange: 10
+    detectRange: 100
     attackRange: 2
     contactDps: 10
     monsterbehaviors: 0000000001000000
+    spawnCoolTime: 0
+    boss: {fileID: 0}
   maxHp: 0
   curHp: 0
+  hpGauge: {fileID: 0}
   curState: 2
   playerTransform: {fileID: 0}
   monsterLayer:
