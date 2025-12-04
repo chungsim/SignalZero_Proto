@@ -16,6 +16,8 @@ public class Option : MonoBehaviour
 	public Button graphics;
 	public Button control;
 
+	public Button closeBtn;
+
 	public Vector3 originalPosition = Vector3.zero;
 	public Vector3 movePosition;
 
@@ -44,6 +46,7 @@ public class Option : MonoBehaviour
 		graphicsPanel.SetActive(false);
 		controlPanel.SetActive(false);
 		basePanel.SetActive(false);
+		closeBtn.onClick.AddListener(ClosePanel);
 	}
 
 	void OpenPanel()
