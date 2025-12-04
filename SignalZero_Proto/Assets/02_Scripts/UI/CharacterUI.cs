@@ -5,40 +5,40 @@ using UnityEngine.UI;
 
 public class CharacterUI : MonoBehaviour
 {
-    public Transform player;
+	public Transform player;
 	public RectTransform canvasRect;
 	public RectTransform uiRect;
 	[SerializeField] private Image healthbarBlue;
-    [SerializeField] private Image healthbarYellow;
+	[SerializeField] private Image healthbarYellow;
 
-    private float currentHealth;
-    private float maxHealth;
+	private float currentHealth;
+	private float maxHealth;
 
-    public float currentGauge;
-    public float maxGauge;
+	public float currentGauge;
+	public float maxGauge;
 
 	public float offsetY = 1.5f;
 
 
 	public Camera cam;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
+	// Start is called before the first frame update
+	void Start()
+	{
 
-    public void Init()
-    {
-        player = GameManager.Instance.characterManager.GetPlayerTransform();
-        cam = Camera.main;
-        maxHealth = GameManager.Instance.characterManager.playerController.GetMaxHp();
-        maxGauge = GameManager.Instance.characterManager.playerController.GetMaxGauge();
-    }
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
+	public void Init()
+	{
+		player = GameManager.Instance.characterManager.GetPlayerTransform();
+		cam = Camera.main;
+		maxHealth = GameManager.Instance.characterManager.playerController.GetMaxHp();
+		maxGauge = GameManager.Instance.characterManager.playerController.GetMaxGauge();
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
 		HealthUpdate();
 		BoostUpdate();
 	}
@@ -46,11 +46,11 @@ public class CharacterUI : MonoBehaviour
 	private void LateUpdate()
 	{
 		CalculateRotation();
-		
+
 	}
 
 	void CalculateRotation()
-    {
+	{
 		if (cam == null) return;
 
 		// 카메라가 보고 있는 방향(forward)과 위쪽(up)을 그대로 따라가는 빌보드
@@ -61,8 +61,8 @@ public class CharacterUI : MonoBehaviour
 		transform.LookAt(transform.position + forward, up);
 	}
 
-    void HealthUpdate()
-    {
+	void HealthUpdate()
+	{
 		if (GameManager.Instance == null)
 		{
 			Debug.LogError("[CharacterUI] GameManager.Instance == null");
@@ -81,12 +81,12 @@ public class CharacterUI : MonoBehaviour
 			return;
 		}
 		currentHealth = GameManager.Instance.characterManager.playerController.GetCurrentHp();
-        healthbarBlue.fillAmount = currentHealth/maxHealth;
-    }
+		healthbarBlue.fillAmount = currentHealth / maxHealth;
+	}
 
-    void BoostUpdate()
-    {
-        currentGauge = GameManager.Instance.characterManager.playerController.GetCurrentGauge();
-		healthbarYellow.fillAmount =currentGauge/maxGauge;
+	void BoostUpdate()
+	{
+		currentGauge = GameManager.Instance.characterManager.playerController.GetCurrentGauge();
+		healthbarYellow.fillAmount = currentGauge / maxGauge;
 	}
 }
