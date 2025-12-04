@@ -36,12 +36,12 @@ public class FieldManager : MonoBehaviour
 			Destroy(child.gameObject);
 		}
 		float y = -1f;
-        for(int i = 0;  i < 100; i++)
+        for(int i = 0;  i < 16; i++)
 		{
             int q = UnityEngine.Random.Range(0, fields.Count);
             GameObject spawnField = Instantiate(fields[q],this.transform);
-			float x = (i % 10) * 200f;
-            float z = (i / 10) * 200f;
+			float x = (i % 4) * 200f;
+            float z = (i / 4) * 200f;
             spawnField.transform.position = new Vector3(x, y, z);
             spawnFields.Add(spawnField);
 		}
