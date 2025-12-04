@@ -122,6 +122,10 @@ public class Monster : MonoBehaviour, IDamageAble
     {
         int result = curHp - damage;
         UpdateHpGauge();
+        if(monsterData.monsterRole == MonsterRoles.Boss && GameManager.Instance.uiManager.bossHPBar.gameObject.activeInHierarchy)
+        {
+            UpdateBossHp();
+        }
 
         if(curHp > 0)
         {
@@ -162,6 +166,11 @@ public class Monster : MonoBehaviour, IDamageAble
         }
         
         Destroy(gameObject);
+    } 
+
+    private void UpdateBossHp()
+    {
+        GameManager.Instance.uiManager.bossHPBar.fillAmount = (float)curHp / (float)maxHp;
     }
 
 }
