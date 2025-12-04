@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4392838133097728686}
   - component: {fileID: 4944146180151225178}
   - component: {fileID: 9116935034129836184}
+  - component: {fileID: 244617031347431038}
   m_Layer: 10
   m_Name: MidBoss_Test
   m_TagString: Untagged
@@ -90,6 +91,33 @@ MonoBehaviour:
   monsterLayer:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!54 &244617031347431038
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5304753864074171701}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &5384776729460518039
 GameObject:
   m_ObjectHideFlags: 0
