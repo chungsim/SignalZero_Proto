@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour, IDamageAble
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
 
-        // ✅ AudioManager 찾기 (Instance 대신 FindObjectOfType 사용)
+        // AudioManager 찾기 (Instance 대신 FindObjectOfType 사용)
         audioManager = FindObjectOfType<AudioManager>();
         if (audioManager == null)
         {
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour, IDamageAble
         // 사망 체크
         if (playerCombat != null && playerCombat.IsDead()) return;
 
-        // ✅ 매 프레임 마우스 위치 업데이트
+        // 매 프레임 마우스 위치 업데이트
         if (playerMovement != null)
         {
             Vector2 mousePos = inputActions.Player.MousePosition.ReadValue<Vector2>();
