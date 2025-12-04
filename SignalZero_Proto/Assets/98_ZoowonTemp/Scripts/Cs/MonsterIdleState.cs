@@ -50,8 +50,8 @@ public class MonsterIdleState : MonsterBaseState
         if(nextPatrolPosition == _monster.transform.position)
         {
             if(Time.time >= nextPatrolTime)
-            {
-                nextPatrolPosition = RandPatrolPosition();
+            {              
+                nextPatrolPosition = RandPatrolPosition();         
             }
         }
         else
@@ -78,6 +78,7 @@ public class MonsterIdleState : MonsterBaseState
     {
         return new Vector3(UnityEngine.Random.Range(sectionMinPos.x, sectionMaxPos.x), 0, UnityEngine.Random.Range(sectionMinPos.z, sectionMaxPos.z)); 
     }
+
 
     void LookAtDirection()
     {

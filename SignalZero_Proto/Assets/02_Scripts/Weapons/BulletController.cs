@@ -105,6 +105,9 @@ public class BulletController : MonoBehaviour, IPoolable
             return;
         }
 
+        // 피격 사운드 처리
+        bulletManager.OnBulletImpact(transform.position, data);
+
         // 데미지 처리
         bulletManager.ApplyDamage(other, data.damagePerShot);
 

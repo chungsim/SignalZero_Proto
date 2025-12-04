@@ -74,10 +74,12 @@ MonoBehaviour:
     maxHp: 600
     curHp: 600
     moveSpeed: 13
-    detectRange: 1000
+    detectRange: 3000
     attackRange: 30
     contactDps: 0
     monsterbehaviors: 0100000003000000
+    spawnCoolTime: 5
+    boss: {fileID: 0}
   maxHp: 0
   curHp: 0
   curState: 0
@@ -96,17 +98,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 0969fee931376c441ab5c492f4e659ca,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0969fee931376c441ab5c492f4e659ca,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 30
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0969fee931376c441ab5c492f4e659ca,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0969fee931376c441ab5c492f4e659ca,
         type: 3}

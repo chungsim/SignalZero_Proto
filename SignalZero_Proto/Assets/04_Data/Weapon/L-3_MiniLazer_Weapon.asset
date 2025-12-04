@@ -19,3 +19,4 @@ MonoBehaviour:
   projectileTypeID: 0
   modelID: 1
   bulletData: {fileID: 11400000, guid: f1e6aa046b308654c80faf584de02ae0, type: 2}
+  audioData: {fileID: 11400000, guid: bb6288d478614034586dd76060fba141, type: 2}

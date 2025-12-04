@@ -57,6 +57,6 @@ public class MonsterAttackState : MonsterBaseState
         if (Time.time < nextAttackTime) return;
 
         GameManager.Instance.monsterSpawnManager.SpawnMinion(_monster.transform, 4);
-        nextAttackTime = Time.time + 5f;      
+        nextAttackTime = Time.time + _monster.monsterData.spawnCoolTime;      
     }
 }
