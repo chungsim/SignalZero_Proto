@@ -44,6 +44,10 @@ public class PlayerController : MonoBehaviour , IDamageAble
     public float currentHp;
     public bool isDead = false;
 
+    // 무기 발사
+
+    private bool isFiring;
+
     private enum PlayerState
     {
         Normal,
@@ -74,8 +78,7 @@ public class PlayerController : MonoBehaviour , IDamageAble
         inputActions.Player.MousePosition.performed += ctx =>
             mouseScreenPosition = ctx.ReadValue<Vector2>();
 
-        inputActions.Player.Attack.started += ctx =>
-        weaponManager.FireAllWeapons(); // 플레이어 Attack input을 WeaponManager에게 전달
+        inputActions.Player.Attack.started += _ => isFiring = true; // 플레이어 Attack input을 저장
 
         inputActions.Player.Dash.started += ctx => OnDashPressed();
         inputActions.Player.Dash.canceled += ctx => OnDashReleased();
@@ -113,6 +116,13 @@ public class PlayerController : MonoBehaviour , IDamageAble
                 UpdateBooster();
                 break;
         }
+
+        if (isFiring)
+        {
+            weaponManager.FireAllWeapons();
+            isFiring = false;
+        }
+            
     }
 
     void FixedUpdate()
