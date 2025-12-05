@@ -52,6 +52,8 @@
 
 <img width="769" height="410" alt="Image" src="https://github.com/user-attachments/assets/5bb2fa75-56af-43cb-9243-2b1f532e64f6" />
 
+![Image](https://github.com/user-attachments/assets/fc2147b2-ed35-453a-85bb-1933782a4c35)
+
 
 
 ## ⏲️ 개발기간
