@@ -16,6 +16,7 @@
 - 프로젝트 시작 계기 : 심화 팀프로젝트 팀 빌딩을 통해 기획자 & 개발자로 구성해 작업하는 첫 협업 프로젝트
 - 프로젝트 구성 인원 : 김상혁, 김주원, 조현일, 송덕희, 유원영
 
+- 역할분담 : 기획_김상혁/ 몬스터_김주원/ 플레이어_조현일/ 필드&UI_송덕희/ 무기&신 구성_유원영
 
 ## 💜 주요기능
 
@@ -59,17 +60,14 @@
 
 ## 🔧 기술스택
 
-###  Language
-*  C#
+###  Language/Engine
+*  C# / Unity
 
 ###  Version Control
 *  Git + GitHubDesktop + Fork
 
 ###  IDE
 * Visual Studio + Visual Studio Code
-
-###  Framework
-* net9.0
 
 
 ### 🚀 배포 (Deploy)
