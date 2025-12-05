@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,10 +23,10 @@ public class MonsterSpawnManager : MonoBehaviour
     [Header("Drop")]
     [SerializeField] private GameObject[] dropItems;
 
-    [Header("GAme End Panels")]
-    [SerializeField] private GameObject gameOver;
-    [SerializeField] private GameObject gameClear;
-
+    void Awake()
+    {
+        GameManager.Instance.monsterSpawnManager = this;
+    }
     void Start()
     {
         visitedFields.Clear();
@@ -141,20 +141,6 @@ public class MonsterSpawnManager : MonoBehaviour
     {
         GameObject go = Instantiate(dropItems[UnityEngine.Random.Range(0, dropItems.Length)]);
         go.transform.position = pos;
-    }
-
-    //임시 기능 구현 추후 ui 매니저로 이동할 예정
-
-    public void GameEnd(bool isBossDead)
-    {
-        if (isBossDead)
-        {
-            gameClear.SetActive(true);
-        }
-        else
-        {
-            gameOver.SetActive(true);
-        }
     }
 
 }

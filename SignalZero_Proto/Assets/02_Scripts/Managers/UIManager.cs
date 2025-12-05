@@ -7,29 +7,24 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
 	public CharacterUI characterUI;
+	public Tutorial tutorial;
 
 	public Image bossHPBackground;
 	public Image bossHPBar;
 	public GameObject bossHPObject;
 
-
-	private static UIManager instance;
-	public static UIManager Instance { get { return instance; } }
-	// Start is called before the first frame update
 	void Start()
 	{
-		if (instance == null)
-		{
-			instance = this;
-		}
-		bossHPObject.SetActive(false);
+        bossHPObject.SetActive(false);
+    }
 
-	}
-
-	// Update is called once per frame
-	void Update()
+	public void Init()
 	{
+        if (tutorial != null)
+            tutorial.Init();
 
-	}
+        if (characterUI != null)
+            characterUI.Init();
+    }
 
 }

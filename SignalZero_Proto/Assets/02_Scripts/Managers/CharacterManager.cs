@@ -28,6 +28,12 @@ public class CharacterManager : MonoBehaviour
     /// GameManager에서 호출하는 초기화 메서드
     /// 플레이어 생성 및 등록을 처리
     /// </summary>
+    /// 
+    private void Awake()
+    {
+        GameManager.Instance.characterManager = this;
+    }
+
     public void Init()
     {
         // 이미 플레이어가 있으면 스킵

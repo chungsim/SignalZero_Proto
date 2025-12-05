@@ -1206,6 +1206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterUI: {fileID: 0}
+  tutorial: {fileID: 0}
   bossHPBackground: {fileID: 8781025718141483686}
   bossHPBar: {fileID: 7572709306338238196}
   bossHPObject: {fileID: 3972591930231821008}

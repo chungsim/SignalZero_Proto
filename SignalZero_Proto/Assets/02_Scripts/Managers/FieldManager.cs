@@ -10,18 +10,17 @@ public class FieldManager : MonoBehaviour
     public event Action spawn;
     public List<GameObject> spawnFields;
 
-    // Start is called before the first frame update
+
+    void Awake()
+    {
+        GameManager.Instance.fieldManager = this;
+    }
     void Start()
     {
 		ShuffleList(fields);
 		fieldReorder();
 	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void Init()
     {

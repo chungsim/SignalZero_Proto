@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565d4935c9a6e0a47ac052a1acf4a6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioManagerPrefab: {fileID: 0}
+  audioManagerPrefab: {fileID: 1590549228391863972, guid: 9c8dfd85008f8d84fad81ecea43a9c8f,
+    type: 3}
   audioManager: {fileID: 0}
   uiManager: {fileID: 0}
   fieldManager: {fileID: 0}
