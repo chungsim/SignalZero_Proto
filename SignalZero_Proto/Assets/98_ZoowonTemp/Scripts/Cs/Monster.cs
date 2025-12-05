@@ -163,8 +163,7 @@ public class Monster : MonoBehaviour, IDamageAble
         // 보스 사망 시 처리
         if(monsterData.monsterRole == MonsterRoles.Boss)
         {
-            GameManager.Instance.monsterSpawnManager.GameEnd(true);
-            // GameManager.Instance.uiManager.GameEnd(true); >> ui매니저로 옮기고 나서
+            GameManager.Instance.uiManager.ActiveEndPanel(true);
         }
         
         Destroy(gameObject);

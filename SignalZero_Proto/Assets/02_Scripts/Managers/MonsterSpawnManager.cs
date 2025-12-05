@@ -143,4 +143,13 @@ public class MonsterSpawnManager : MonoBehaviour
         go.transform.position = pos;
     }
 
+    public void ClearAllMonster()
+    {
+        Transform[] allChildren = GetComponentsInChildren<Transform>();
+        for(int i = allChildren.Length -1 ; i >= 0; i--)
+        {
+            Destroy(allChildren[i].gameObject);
+        }
+    }
+
 }
