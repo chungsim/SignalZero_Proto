@@ -140,3 +140,23 @@
     Cause: 오브젝트 풀 매니저에서 설정해둔 초기 생성량보다 무기가 매초 마다 사용해야 하는 탄환량이 더 많았음.
     
     Solve: 무기 당 한번 쏠 때 얼마의 총알이 필요한지 미리 계산 후 탄환 종류별로 넉넉하게 잡아서 생성해둠.
+ 2. Trouble: 카메라 끊김 현상 기본이동 중 카메라가 끊기며 따라감
+
+    Cause:  Update()와 FixedUpdate() 타이밍 불일치
+   
+    Solve: SmoothDamp삭제. 카메라 오프셋로직과 결합되었을때, 포지션지속업데이트로 오히려 끊김의 원인.
+ 3. Trouble: 버스트 순간이동
+
+    Cause: 순간가속인 기획과 달라져서 생긴 문제
+
+    Solve: 포지션을 업데이트하는 로직이 아닌 속도기반 로직으로 수정
+ 4. Trouble: 플레이어캐릭터가 몬스터와 충돌이후 계속 떨리는 현상
+
+    Cause: 플레이어와 몬스터간의 y축 좌표, 힘이 어긋남
+
+    Solve: rigidbody에서 freeRotation제한 (x,y,z축 모두 제한), collider를 기존 박스에서 스피어로 변경
+ 5. Trouble: PlayerController 500+ 라인 → 3개 컴포넌트 분리,단순 코드 복붙으로 NullReferenceException 발생
+
+    Cause : GetComponent 누락, 초기화 순서 미적용
+
+    Solve: 컴포넌트 캐싱
