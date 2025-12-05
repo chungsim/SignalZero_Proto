@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
 
 	public void Init()
 	{
+        characterUI = FindObjectOfType<CharacterUI>();
+        tutorial = FindObjectOfType<Tutorial>();
         if (tutorial != null)
             tutorial.Init();
 
