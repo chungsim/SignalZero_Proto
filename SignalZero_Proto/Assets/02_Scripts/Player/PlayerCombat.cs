@@ -93,6 +93,7 @@ public class PlayerCombat : MonoBehaviour, IDamageAble
 
         // TODO: 사망 애니메이션, 이펙트, UI 표시
         // TODO: GameManager에 게임 오버 알림
+        GameManager.Instance.uiManager.ActiveEndPanel(false);
 
         // 임시: 3초 후 오브젝트 비활성화
         Invoke(nameof(DeactivatePlayer), 3f);

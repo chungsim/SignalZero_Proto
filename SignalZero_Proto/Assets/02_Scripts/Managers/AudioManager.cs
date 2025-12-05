@@ -28,6 +28,8 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
+        GameManager.Instance.audioManager = this;
+
         soundDict = new Dictionary<string, AudioClip>();
 
         foreach (var s in soundList)
